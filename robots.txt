@@ -31,7 +31,7 @@ Allow: /
 
 # Default policy
 User-agent: *
-Disallow: /resume/
+Allow: /
 
 # Content Signals — declare preferences for AI usage
 Content-Signal: ai-train=yes, search=yes, ai-input=yes
