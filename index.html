@@ -120,8 +120,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.ee266d694777d101a30079af743bcd5431efe0fa0eb617e5d0f49e5a32364259426bea033e12cb5a3331d991f60241efd9e6f5e85522ee2a3a8dd58bb3fea0aa.css"
-    integrity="sha512-7iZtaUd30QGjAHmvdDvNVDHv4PoOthfl0PSeWjI2QllCa&#43;oDPhLLWjMx2ZH2AkHv2eb16FUi7io6jdWLs/6gqg==">
+    href="/css/main.bundle.min.ce56215715f6002c507bad4d23e94835b54e109ac9296cb252ae4109d7fa4cdf65dc9b57b45de6f9709922ddcadbc32fedc813455766993a77667aef07ceb8ad.css"
+    integrity="sha512-zlYhVxX2ACxQe61NI&#43;lINbVOEJrJKWyyUq5BCdf6TN9l3JtXtF3m&#43;XCZIt3K28Mv7cgTRVdmmTp3ZnrvB864rQ==">
 
   
   
@@ -244,18 +244,6 @@
   
     
 
-  <script
-  async
-  src="https://www.googletagmanager.com/gtag/js?id=G-F2FPL4RJD1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-F2FPL4RJD1');
-</script>
-
-
 
 
 
@@ -305,6 +293,28 @@
   
 
   
+  
+    
+
+
+
+
+
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    page_type: "home",
+    content_group: "home",
+  });
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NLQLLRCK');</script>
+
+
   
 
   
@@ -2285,6 +2295,29 @@
     </script>
   
   
+  
+    
+<div class="footer-cat" aria-hidden="true" title="Hello from the library cat">
+  <svg viewBox="0 0 58 100" xmlns="http://www.w3.org/2000/svg"><path class="cat-tail" d="M14,58 q-16,10 -11,32 q3,10 11,7" fill="none" stroke="#E08A3C" stroke-width="6" stroke-linecap="round"/><ellipse cx="28" cy="47" rx="18" ry="16" fill="#E08A3C"/><path d="M16,38 q6,4 4,10 M22,34 q6,5 3,11" fill="none" stroke="#C46A2A" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="38" cy="49" rx="8" ry="11" fill="#F4C58F"/><ellipse cx="34" cy="61" rx="5" ry="3.5" fill="#F4C58F"/><ellipse cx="43" cy="61" rx="5" ry="3.5" fill="#F4C58F"/><path d="M31,17 L33,2 L41,13 Z" fill="#E08A3C"/><path d="M45,13 L52,2 L54,17 Z" fill="#E08A3C"/><path d="M34,13 L34,6 L38,12 Z" fill="#F4C58F"/><circle cx="42" cy="24" r="13" fill="#E08A3C"/><path d="M37,13 q2,4 0,7 M43,12 q1,4 -1,7" fill="none" stroke="#C46A2A" stroke-width="2" stroke-linecap="round"/><path d="M35,23 q2.5,2.5 5,0 M44,23 q2.5,2.5 5,0" fill="none" stroke="#2D3748" stroke-width="1.6" stroke-linecap="round"/><path d="M41,28 l1.5,1.5 l1.5,-1.5 Z" fill="#B85C5C"/><path d="M34,29 h-8 M34,31 l-7,2 M50,29 h8 M50,31 l7,2" stroke="#F4C58F" stroke-width="1"/></svg>
+</div>
+
+
+<script>
+  (function () {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    function ripple(x, y, target) {
+      var el = document.createElement("div");
+      var onControl = target && target.closest && target.closest("a, button, input, textarea, select");
+      el.className = onControl ? "click-ripple click-ripple--control" : "click-ripple";
+      el.style.left = x + "px";
+      el.style.top = y + "px";
+      document.body.appendChild(el);
+      setTimeout(function () { el.remove(); }, onControl ? 800 : 600);
+    }
+    document.addEventListener("pointerdown", function (e) { ripple(e.clientX, e.clientY, e.target); }, { passive: true });
+  })();
+</script>
+
   
 </footer>
 <div
