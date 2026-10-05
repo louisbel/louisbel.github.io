@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Search on Louis Belpaire</title>
+    <link>https://louisbel.github.io/tags/search/</link>
+    <description>Recent content in Search on Louis Belpaire</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2026 Louis Belpaire</copyright>
+    <lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://louisbel.github.io/tags/search/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How AI Overviews Changed My Search Behavior</title>
+      <link>https://louisbel.github.io/posts/ai-overviews-and-my-search-clicks/</link>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://louisbel.github.io/posts/ai-overviews-and-my-search-clicks/</guid>
+      <description>I click a website only about half the time now. My own browser history shows how AI Overviews and Gemini changed the way I search.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://louisbel.github.io/posts/ai-overviews-and-my-search-clicks/featured.png" />
+    </item>
+    
+  </channel>
+</rss>
