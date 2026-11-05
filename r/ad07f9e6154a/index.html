@@ -23,8 +23,16 @@
     padding: 84px 110px 70px; display: flex; flex-direction: column; margin: 0 auto 40px; break-after: page;
   }
   @media print { html { background: none; } .slide { margin: 0; } }
-  .chip { align-self: flex-start; font-size: 19px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-          color: var(--sage); background: var(--sage-soft); border-radius: 999px; padding: 9px 20px; margin-bottom: 30px; }
+  /* PDF: Chrome writes blurred shadows as soft-masked images that macOS Preview draws as gray boxes.
+     Print swaps every blurred shadow for a crisp, unblurred one, which exports as a plain vector shape. */
+  @media print {
+    * { box-shadow: none !important; }
+    .cover .photo { box-shadow: 0 0 0 8px rgba(255,255,255,.2) !important; }
+    .mock, .shot, .board, .mail { box-shadow: 0 8px 0 -2px rgba(45,55,72,.06) !important; }
+    .nd, .kd, .strip .ads > img { box-shadow: 0 4px 0 rgba(45,55,72,.08) !important; }
+  }
+  .chip { align-self: flex-start; font-size: 18px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+          color: var(--gray); border-top: 4px solid var(--sage); padding-top: 14px; margin-bottom: 26px; }
   h1 { font-size: 76px; line-height: 1.04; font-weight: 800; letter-spacing: -.025em; max-width: 1500px; }
   h1 em { font-style: normal; }
   .hl { font-style: italic; background: linear-gradient(transparent 58%, var(--yellow) 58%, var(--yellow) 92%, transparent 92%); padding: 0 .08em; }
@@ -251,6 +259,7 @@
   .cover.appx .grp .toc { margin-top: 22px; gap: 16px; } .cover.appx .grp .toc a { font-size: 32px; }
   .toc .sub br { display: block; content: ""; margin-top: 6px; }
   .toc .sub { flex-wrap: wrap; max-width: 760px; }
+  .cover .toc { margin-top: 36px; gap: 4px; margin-bottom: 30px; } .cover .toc > li > a { font-size: 26px; } .cover .toc li { display: flex; align-items: baseline; flex-wrap: wrap; } .cover .toc .sub { display: inline; margin: 0 0 0 22px; font-size: 20px; } .cover .toc .sub a { font-size: 20px; }
   .case { flex: 1; min-height: 0; display: grid; grid-template-columns: 600px 1fr; gap: 70px; margin-top: 44px; margin-bottom: 40px; }
   .story { display: flex; flex-direction: column; gap: 30px; }
   .story h3 { font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--sage); margin-bottom: 8px; }
@@ -364,8 +373,8 @@
   .fun { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; }
   .fun span { background: var(--sage-soft); color: var(--sage); border-radius: 999px; padding: 6px 13px; } .fun b { color: var(--mute); }
   .curve { width: 100%; flex: 1; }
-  .scs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .scs div { background: var(--off); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; }
+  .scs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .scs div { background: var(--off); border-radius: 14px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px; }
   .scs b { font-size: 19px; } .scs span { font-size: 15.5px; color: var(--gray); line-height: 1.35; flex: 1; }
   .scs em { font-style: normal; font-size: 13px; font-weight: 700; color: var(--sage); }
   .ci { flex: 1; display: flex; flex-direction: column; gap: 20px; }
@@ -387,6 +396,20 @@
   .scr2 .sp { position: absolute; top: 48px; left: 18px; font-size: 12px; color: #fff; opacity: .85; }
   .adv2 .side { flex: 1; display: flex; flex-direction: column; gap: 30px; }
   .adv2 .howto { gap: 16px; } .adv2 .howto li { font-size: 18px; }
+
+  /* Kudos board: scattered notes, icons in place of faces */
+  .kb { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 26px; align-items: start; margin: 34px 0 26px; } .kc { display: flex; flex-direction: column; }
+  .kd { display: block; background: #fff; border: 2px solid var(--line); border-radius: 14px; padding: 20px 22px 16px; margin-bottom: 24px; box-shadow: 0 10px 22px -16px rgba(0,0,0,.35); }
+  .kd p { font-size: 22px; line-height: 1.36; font-weight: 600; color: var(--navy); }
+  .kd.s p { font-size: 28px; line-height: 1.25; } .kd.l p { font-size: 22px; }
+  .kd .who { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 16px; font-weight: 600; color: var(--gray); line-height: 1.25; }
+  .kd .av { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--sage-soft); color: var(--sage); }
+  .kd .av svg { width: 18px; height: 18px; }
+  .kc:nth-child(odd) .kd:nth-child(2), .kc:nth-child(even) .kd:nth-child(odd) { transform: rotate(-1.5deg) translateX(6px); } .kc:nth-child(odd) .kd:nth-child(3), .kc:nth-child(even) .kd:nth-child(2) { transform: rotate(1.3deg) translateX(-4px); }
+  .kc:nth-child(odd) .kd:first-child { transform: rotate(.7deg); }
+
+  /* Before and after: link from each area to its chapter */
+  #act a.go { display: inline-block; margin-left: 12px; font-size: 15px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--sage); text-decoration: none; border-bottom: 2px solid var(--sage); vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -398,9 +421,13 @@
     <ol class="toc">
       <li><a href="#work"><i>01</i>Work history</a></li>
       <li><a href="#skills"><i>02</i>Areas of expertise</a></li>
-      <li><a href="#time"><i>03</i>Time savings</a><span class="sub"><a href="#time">Before and after</a> · <a href="#creative">Creative output</a></span></li>
-      <li><a href="#productivity"><i>04</i>Productivity tracking</a></li>
-      <li><a href="#appendix"><i>+</i>Appendix: case studies</a><span class="sub"><a href="#hub">Marketing Operations</a> · <a href="#scorecards">Reporting</a> · <a href="#systems">Marketing Stack</a> · <a href="#intel">Creative</a></span></li>
+      <li><a href="#time"><i>03</i>Before and after</a></li>
+      <li><a href="#creative"><i>04</i>Creative</a><span class="sub"><a href="#creative">Creative output</a> · <a href="#adstudio">Ad Studio</a> · <a href="#intel">Competitive intelligence</a> · <a href="#library">Creative Library</a></span></li>
+      <li><a href="#launcher"><i>05</i>Marketing automation</a><span class="sub"><a href="#launcher">Campaign launcher</a> · <a href="#newsletter">Weekly update</a></span></li>
+      <li><a href="#scorecards"><i>06</i>Reporting</a><span class="sub"><a href="#scorecards">Scorecards</a></span></li>
+      <li><a href="#systems"><i>07</i>System integration</a><span class="sub"><a href="#systems">Systems map</a> · <a href="#hub">Marketing hub</a></span></li>
+      <li><a href="#productivity"><i>08</i>Productivity tracking</a></li>
+      <li><a href="#kudos"><i>09</i>Kudos</a></li>
     </ol>
     <div class="meta">
       <a href="mailto:louis.belpaire@gmail.com"><img src="assets/icons/social-envelope.svg" alt="">louis.belpaire@gmail.com</a>
@@ -476,7 +503,7 @@
 </section>
 
 <section class="slide" id="time">
-  <span class="chip">03 · Time savings</span>
+  <span class="chip">03 · Before and after</span>
   <h1>Before and after</h1>
   <div class="ba">
     <div class="bah"><span></span><div class="legend"><span><i style="background:var(--mute)"></i>Before: hours by hand</span><span><i style="background:var(--sage)"></i>After: hours Claude ran</span></div><span>Faster</span></div>
@@ -486,7 +513,7 @@
 </section>
 
 <section class="slide" id="creative">
-  <span class="chip">03 · Time savings · Creative</span>
+  <span class="chip">04 · Creative</span>
   <h1>Creative output</h1>
   <div class="cmp">
     <div class="pairs">
@@ -503,271 +530,8 @@
   <div class="foot"><a href="#top">FY27 launch board, Nov 2026 · page tops shown, photos blurred: they show students</a><span class="pg"></span></div>
 </section>
 
-<section class="slide" id="productivity">
-  <span class="chip">04 · Productivity tracking</span>
-  <h1>September to date</h1>
-  <div class="body" style="gap:70px;margin-top:34px">
-    <div style="flex:1.65;display:flex;flex-direction:column">
-      <div class="legend"><span><i style="background:var(--mute)"></i>Hours I worked</span><span><i style="background:var(--sage)"></i>Claude's output, in hours it would take by hand</span></div>
-      <svg id="xf" viewBox="0 0 1000 400" style="width:100%;flex:1"></svg>
-    </div>
-    <div style="flex:1;display:flex;flex-direction:column;gap:30px">
-      <div style="display:flex;gap:56px">
-        <div class="stat sm"><div class="n" id="xf-w"></div><div class="l">hours I worked</div></div>
-        <div class="stat sm"><div class="n" id="xf-o"></div><div class="l">Claude's output, in hand-work hours</div></div>
-      </div>
-      <div style="display:flex;gap:56px">
-        <div class="stat"><div class="n" id="xf-x"></div><div class="l">output per hour worked</div></div>
-        <div class="stat"><div class="n" id="xf-ai"></div><div class="l">per hour Claude ran</div></div>
-      </div>
-      <div class="est">I estimate my productivity at about <b>4×</b> that of a contributor working without AI.</div>
-    </div>
-  </div>
-  <div class="agents">
-    <div class="card"><b>Agent 1 · Hours tracker</b>Every 30 seconds it logs keyboard and mouse activity and the app in front, adds work-browser visits and Teams calls, and gives each minute one state: meeting, hands-on, reading or personal. Only work minutes count.</div>
-    <div class="card"><b>Agent 2 · Task rater</b>Every Tuesday a read-only Claude agent scores each Claude Code task from 1 to 5 for tedium and estimates how long it would take by hand, against fixed anchors. Conservative: my review time is not subtracted.</div>
-  </div>
-  <div class="foot"><a href="#top">Work weeks Sep 1 – Nov 1, 2026</a><span class="pg"></span></div>
-</section>
-
-<section class="slide cover appx" id="appendix">
-  <div class="txt">
-    <div class="name" style="font-size:110px">Appendix</div>
-    <div class="role">Case studies</div>
-    <div class="grp">
-      <div><h4>Marketing Operations</h4><ol class="toc"><li><a href="#hub"><i>A1</i>Marketing hub</a></li><li><a href="#library"><i>A2</i>Creative Library</a></li><li><a href="#launcher"><i>A3</i>Campaign launcher</a></li><li><a href="#newsletter"><i>A4</i>Weekly update</a></li></ol></div>
-      <div><h4>Reporting</h4><ol class="toc"><li><a href="#scorecards"><i>A5</i>Scorecards</a></li></ol></div>
-      <div><h4>Marketing Stack</h4><ol class="toc"><li><a href="#systems"><i>A6</i>Systems map</a></li></ol></div>
-      <div><h4>Creative</h4><ol class="toc"><li><a href="#intel"><i>A7</i>Competitive intelligence</a></li><li><a href="#adstudio"><i>A8</i>Ad Studio</a></li></ol></div>
-    </div>
-  </div>
-</section>
-
-<section class="slide" id="hub" style="padding-bottom:0">
-  <span class="chip">Marketing Operations · Marketing hub</span>
-  <h1>The marketing hub</h1>
-  <div class="mock">
-    <div class="bar"><i></i><i></i><i></i><span>marketing-hub · password protected</span></div>
-    <div class="mbody">
-      <nav class="rail">
-        <b>Sections</b>
-        <span class="on">Performance &amp; planning</span><span>Channels</span><span>Website</span><span>Competitors &amp; market</span><span>Creative &amp; brand</span><span>Systems &amp; data quality</span><span>People &amp; enablement</span>
-      </nav>
-      <div class="main">
-        <div class="mhead">
-          <div><div class="mt">Marketing Hub</div><div class="ms">Every report, tracker and tool the team uses, in one place</div></div>
-          <div class="usage"><span><b>41</b> people</span><span><b>1,298</b> views</span><span><b>49</b> tools</span><span>in use since <b>Oct 5</b></span></div>
-        </div>
-        <div class="groups">
-          <div class="gcol"><h4>Data &amp; reporting<span>23</span></h4><div class="tile dyn"><em>Daily</em><b>Program Scorecard</b><small>Every program vs last year, from mail to enrollment</small></div><div class="tile"><b>Launch Board</b><small>18 programs: pages, emails, CRM tests, mail drops</small></div><div class="tile dyn"><em>Daily</em><b>Mail to Site Checker</b><small>Site visits driven by each direct mail drop</small></div><div class="tile dyn"><em>Weekly</em><b>Competitor Ad Report</b><small>New competitor creative each week</small></div></div>
-          <div class="gcol"><h4>Measurement &amp; auditing<span>14</span></h4><div class="tile dyn"><em>Weekly</em><b>Site Accuracy Monitor</b><small>Dates, prices and locations vs the catalog</small></div><div class="tile"><b>Lead-Flow Tests</b><small>Every form tested end to end into the CRM</small></div><div class="tile dyn"><em>Daily</em><b>Event Tracking</b><small>Server-side conversions and ad audiences</small></div><div class="tile"><b>Vanity URL Checker</b><small>Print URLs verified against their tracking</small></div></div>
-          <div class="gcol"><h4>Creative generation<span>9</span></h4><div class="tile dyn"><em>30 min</em><b>Creative Library</b><small>27,000 photos and videos, searchable</small></div><div class="tile"><b>Ad Studio</b><small>Meta static and video ads, built in rounds</small></div><div class="tile"><b>Brochure Builder</b><small>Print-ready program PDFs from one template</small></div><div class="tile"><b>Page Concepts</b><small>Landing pages and site sections, built in a sandbox</small></div></div>
-          <div class="gcol"><h4>Team enablement<span>3</span></h4><div class="tile"><b>Prompting 101</b><small>AI training for the wider team</small></div><div class="tile"><b>Analyst Interview Quiz</b><small>12 questions for marketing data hires</small></div><div class="tile"><b>Personal Branding</b><small>Webinar for the team</small></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="slide">
-  <span class="chip">Marketing Operations · Marketing hub</span>
-  <h1>How the hub works</h1>
-  <div class="body" style="margin-top:20px">
-    <div class="cyc" id="cyc">
-      <svg viewBox="0 0 1700 700" preserveAspectRatio="none"></svg>
-      <div class="core"><div class="big">49</div><div class="lbl">tools in 7 sections</div></div>
-      <div class="node"><h3><i>1</i>Data sources</h3>
-        <div class="lg"><img src="assets/icons/meta.svg" alt=""><img src="assets/icons/googleads.svg" alt=""><img src="assets/icons/googleanalytics.svg" alt=""><img src="assets/icons/hubspot.svg" alt=""><img src="assets/icons/stack-microsoft-dynamics.svg" alt=""><img src="assets/icons/wordpress.svg" alt=""></div>
-        <p>Ad platforms, GA4, HubSpot, CRM exports, the websites</p><p class="add">+ competitor scrapers: ads, sites, nurture emails</p></div>
-      <div class="node"><h3><i>2</i>Pipeline</h3>
-        <div class="lg"><img src="assets/icons/claude.svg" alt=""><img src="assets/icons/python.svg" alt=""><img src="assets/icons/githubactions.svg" alt=""><img src="assets/icons/apple.svg" alt=""><img src="assets/icons/netlify.svg" alt=""></div>
-        <p>Scheduled jobs written with Claude Code. A run fails loudly if its data is stale.</p></div>
-      <div class="node"><h3><i>3</i>Insights</h3>
-        <div class="lg"><img src="assets/icons/stack-power-bi.svg" alt=""><img src="assets/icons/viz-bar.svg" alt=""><img src="assets/icons/viz-line.svg" alt=""><img src="assets/icons/viz-donut.svg" alt=""></div>
-        <p>Hub reports and Power BI: campaign scorecard, site traffic, competitor ads, blog reads. Daily or weekly.</p></div>
-      <div class="node"><h3><i>4</i>Workflows</h3>
-        <p>Launch board, lead-flow tests, brochure builder, site and URL checks</p></div>
-      <div class="node"><h3><i>5</i>Experimentation</h3>
-        <p>Landing-page versions, ad copy tests, new channels like ChatGPT Ads. Results feed back in as data.</p></div>
-    </div>
-  </div>
-  <div class="foot"><a href="#top">Envision Hub, WorldStrides · Nov 2026</a><span class="pg"></span></div>
-</section>
-
-<section class="slide">
-  <span class="chip">Marketing Operations · Marketing hub</span>
-  <h1>Who uses the hub</h1>
-  <div class="body" style="gap:80px">
-    <div style="flex:1.7;display:flex;flex-direction:column">
-      <div class="legend"><span><i style="background:var(--sage)"></i>Page views per day</span></div>
-      <svg id="traffic" viewBox="0 0 1000 470" style="width:100%;flex:1;overflow:visible"></svg>
-    </div>
-    <div style="flex:1">
-      <div style="display:flex;gap:60px;margin-bottom:34px">
-        <div class="stat"><div class="n">41</div><div class="l">colleagues</div></div>
-        <div class="stat"><div class="n">1,298</div><div class="l">page views</div></div>
-        <div class="stat"><div class="n">3,426</div><div class="l">in-tool actions</div></div>
-      </div>
-      <ul class="rank" id="top5"></ul>
-    </div>
-  </div>
-  <div class="foot"><a href="#top">GA4 on the hub, 5 Oct – 4 Nov 2026 (tracking began 5 Oct) · right: views and people per tool</a><span class="pg"></span></div>
-</section>
-
-<section class="slide" id="library">
-  <span class="chip">Marketing Operations · Creative Library</span>
-  <h1>The problem</h1>
-  <div class="srcs"><b>Where assets lived</b><span>OneDrive creative archive</span><span>Team Google Drives</span><span>Agency export zips</span><span>Separate brand archives</span><span>Personal folders</span></div>
-  <div class="prob">
-    <div class="card"><i>1</i><b>No central place to find assets</b><span>Marketing, sales and agency partners had no single place to search. Finding the right shot meant asking around and digging through folders.</span></div>
-    <div class="card"><i>2</i><b>Quality varied folder to folder</b><span>Strong photos sat next to blurry, duplicate and off-brand ones, with no way to tell them apart without opening each file.</span></div>
-  </div>
-  <div class="race cost"><h4>Yearly cost for 100 users</h4>
-    <div class="lane2"><b>Previous solution</b><div class="track"><i class="ag" style="left:0;width:100%"></i></div><span class="old">Dropbox Business Standard: $15 a user a month = <strong>$18,000 a year</strong></span></div>
-    <div class="lane2"><b>Mine</b><div class="track"><i class="me" style="left:0;width:.6%"></i></div><span><strong>$9 a month = $108 a year</strong>, about $17,900 saved</span></div>
-  </div>
-  <div class="foot"><a href="#top">Envision Creative Library, built Sep 2026 · Dropbox list price, Business Standard billed yearly, Nov 2026</a><span class="pg"></span></div>
-</section>
-
-<section class="slide">
-  <span class="chip">Marketing Operations · Creative Library</span>
-  <h1>What I built</h1>
-  <div class="body" style="gap:56px;margin-top:40px;margin-bottom:44px">
-    <div class="shot"><div class="bar"><i></i><i></i><i></i><span>library.envisionexperience · Cloudflare</span></div><img src="assets/library.jpg" alt="Creative library"></div>
-    <div class="stk">
-      <p>27,000 photos and videos in one gated library, searchable in plain language. Every photo is scored for quality and near-duplicates are folded.</p>
-      <h3>On the Mac</h3>
-      <div class="row"><img src="assets/icons/python.svg" alt=""><div>Python ingest<small>every 10 min, metadata and GPS stripped</small></div></div>
-      <div class="row"><img src="assets/icons/apple.svg" alt=""><div>Apple Vision tags<small>on-device, photos of minors never leave the Mac</small></div></div>
-      <div class="row"><span class="gen">AI</span><div>CLIP search · Whisper transcripts<small>on-device models, similar shots folded</small></div></div>
-      <div class="row"><img src="assets/icons/ollama.svg" alt=""><div>Ollama vision model<small>after-hours tagging</small></div></div>
-      <h3>Joined</h3>
-      <div class="row"><img src="assets/icons/meta.svg" alt=""><div>Meta Ads API<small>"Used in ads" filter, "Most ad spend" sort</small></div></div>
-      <h3>Served</h3>
-      <div class="row"><img src="assets/icons/cloudflare.svg" alt=""><div>Cloudflare Worker · R2 · D1<small>password-gated, refreshed every 30 min</small></div></div>
-      <div class="row"><img src="assets/icons/claude.svg" alt=""><div>Built with Claude Code</div></div>
-    </div>
-  </div>
-  <div class="foot"><a href="#top">Envision Creative Library, built Sep 2026 · photos blurred here: they show students</a><span class="pg"></span></div>
-</section>
-
-<section class="slide" id="launcher">
-  <span class="chip">Marketing Operations · Campaign launcher</span>
-  <h1>Campaign launcher</h1>
-  <div class="case">
-    <div class="story">
-      <div><h3>Problem</h3><p>Direct mail lived in a 450-campaign calendar spreadsheet, digital launches in the agency’s plan, and page, email and CRM readiness in people’s heads. Clashes showed up after launch.</p></div>
-      <div><h3>What I did</h3><p>Built one launch board that merges the mail calendar, the digital plan and each program’s build status: landing pages, nurture emails, CRM tests, brochures. It rebuilds whenever the calendar file changes.</p></div>
-      <div class="res"><h3>Result</h3><p>18 products and every mail drop on one screen. The most-used tool on the hub: 227 views from 19 people in its first month.</p></div>
-    </div>
-    <div class="vis"><div class="board"><div class="bar"><i></i><i></i><i></i><span>Hub · Campaign launch board</span></div>
-      <div class="lb"><div class="lbh"><span>Product</span><div class="months" id="lb-m"></div><span>Brochure</span></div><div id="lb"></div></div>
-      <div class="lg2"><span><i class="dia"></i>digital launch</span><span><i class="bub"></i>mail drop, sized by pieces</span></div>
-    </div></div>
-  </div>
-  <div class="foot"><a href="#top">Appendix · FY27 launch, Oct 2026 – Feb 2027 · 8 of 18 products shown, names anonymized</a><span class="pg"></span></div>
-</section>
-
-<section class="slide" id="newsletter">
-  <span class="chip">Marketing Operations · Weekly update</span>
-  <h1>Weekly update</h1>
-  <div class="case">
-    <div class="story">
-      <div><h3>Problem</h3><p>Wins, fixes and new tools stayed inside the team that made them. Sales, partners and leadership heard about them late, or not at all.</p></div>
-      <div><h3>What I did</h3><p>Every Friday at 6:30 a Claude agent collects the week’s changes from the workspace and my mailbox and drafts the email in Outlook. I edit and send it. Past issues live on the hub, with passwords stripped automatically.</p></div>
-      <div class="res"><h3>Result</h3><p>A weekly habit since late September: 6 issues so far, each one under five minutes of my editing.</p></div>
-    </div>
-    <div class="vis"><div class="mail"><div class="mh"><b>Weekly Update · Week 5</b><span>To: Marketing team · Fri 6:30 AM draft, sent after review</span></div>
-      <div class="mb">
-        <p class="intro">Good morning, grab your coffee and hop on the marketing news train! Last week was all about follow-through on a launch.</p>
-        <div class="callout"><h5>🙌 Catch of the week</h5><p>A QR code on a printed piece scanned on Android but not on iPhone, and the piece was reprinted. Lesson for every piece: <b>test QR codes on iOS and Android</b> before sign-off.</p></div>
-        <h5>🔥 Hot from the press</h5><p>A new batch of program photos is in the Creative Library, with brochure picks flagged and already in use for the next round of ads.</p>
-        <h5>📦 New tools &amp; builds</h5><p><u>Mail to Site Checker</u>: how much site traffic each mail drop drives, refreshed daily.</p>
-        <h5>⚙️ Config &amp; systems</h5><p>All Meta audiences now follow one naming convention, and a new audience is ready for the next campaign.</p>
-        <h5>👀 On the lookout for</h5><p>What counts as a digital sale: any touch, first touch or last touch?</p>
-      </div></div></div>
-  </div>
-  <div class="foot"><a href="#top">Appendix · Sep – Oct 2026 · excerpt shortened and anonymized</a><span class="pg"></span></div>
-</section>
-
-<section class="slide" id="scorecards">
-  <span class="chip">Reporting · Scorecards</span>
-  <h1>Scorecards</h1>
-  <div class="case">
-    <div class="story">
-      <div><h3>Problem</h3><p>Reporting meant pulling Power BI exports, HubSpot lists and ad-platform screens by hand. No one could see a program against last year at the same point in its cycle.</p></div>
-      <div><h3>What I did</h3><p>Built four scorecards that refresh themselves every morning from the Azure warehouse, GA4, HubSpot and the ad platforms. Each program lines up with last year from its first mail drop. If a source fails, the page keeps yesterday’s data and says so.</p></div>
-      <div class="res"><h3>Result</h3><p>Every program, from mail piece to enrollment, ready before the team logs in. No manual pulls for the weekly review.</p></div>
-    </div>
-    <div class="vis"><div class="sc">
-      <div class="board"><div class="bar"><i></i><i></i><i></i><span>Hub · Programs FY27 Scorecard</span></div>
-        <div class="scb">
-          <div class="fun"><span>Mailed</span><b>→</b><span>Leads</span><b>→</b><span>Opportunities</span><b>→</b><span>Registrations</span><b>→</b><span>Enrolled</span></div>
-          <svg viewBox="0 0 900 300" class="curve"><line x1="40" y1="260" x2="880" y2="260" stroke="#E5E7EB" stroke-width="2"/><line x1="40" y1="20" x2="40" y2="260" stroke="#E5E7EB" stroke-width="2"/>
-            <path d="M40,258 C200,250 300,215 420,175 S650,90 880,62" fill="none" stroke="#A3ABB5" stroke-width="4"/>
-            <path d="M40,258 C190,246 290,200 400,152 S520,112 600,96" fill="none" stroke="#3D7A6A" stroke-width="5"/>
-            <circle cx="600" cy="96" r="8" fill="#3D7A6A"/><text x="586" y="70" font-size="20" font-weight="700" fill="#3D7A6A" text-anchor="end">FY27 today</text>
-            <text x="760" y="50" font-size="20" fill="#6B7280">FY26</text>
-            <text x="460" y="292" font-size="18" fill="#6B7280" text-anchor="middle">days since the program's first mail drop</text></svg>
-        </div></div>
-      <div class="scs">
-        <div><b>Programs</b><span>Every program vs last year, mail to enrollment</span><em>Daily 5 AM</em></div>
-        <div><b>Direct mail</b><span>Each mail campaign vs the same list last year</span><em>Daily 5 AM</em></div>
-        <div><b>Honors Performance</b><span>Paid campaign across Meta, Google and HubSpot</span><em>Daily</em></div>
-        <div><b>Oxbridge</b><span>Spend, leads and cost per lead since launch</span><em>Daily</em></div>
-      </div>
-    </div></div>
-  </div>
-  <div class="foot"><a href="#top">Reporting · WorldStrides FY27, Oct 2026 · curve shape illustrative, real values left out</a><span class="pg"></span></div>
-</section>
-
-<section class="slide" id="systems">
-  <span class="chip">Marketing Stack · Systems map</span>
-  <h1>Systems map</h1>
-  <div class="case">
-    <div class="story">
-      <div><h3>Problem</h3><p>Leads pass through ad platforms, three websites, HubSpot, Dynamics and an Azure warehouse, each owned by a different team. Nobody had the whole picture, so the same lead was counted differently in each report.</p></div>
-      <div><h3>What I did</h3><p>Interviewed stakeholders across marketing, sales and data, with AI drafting the questions and synthesizing the answers. Catalogued the warehouse read-only (3 databases, ~950 tables). Then generated the map as editable Mural widgets through Mural’s MCP.</p></div>
-      <div class="res"><h3>Result</h3><p>One shared map: 4 lanes, documented vs inferred flows, 3 open gaps. It is now the brief for moving the stack to Dynamics 365 Customer Insights – Journeys.</p></div>
-    </div>
-    <div class="vis"><div class="board"><div class="bar"><i></i><i></i><i></i><span>Mural · Journeys &amp; Flows</span></div>
-      <div class="lanes">
-        <div class="lane"><h4>1 · Acquisition</h4><div class="nd"><img src="assets/icons/meta.svg" alt=""><img src="assets/icons/googleads.svg" alt=""><span>Paid channels</span></div><div class="nd"><img src="assets/icons/viz-bar.svg" alt=""><span>Mail vendors &amp; lists</span><em class="gap">!</em></div></div>
-        <div class="lane"><h4>2 · Lead capture</h4><div class="nd"><img src="assets/icons/wordpress.svg" alt=""><img src="assets/icons/googleanalytics.svg" alt=""><span>Websites &amp; GA4</span></div><div class="nd"><img src="assets/icons/hubspot.svg" alt=""><span>HubSpot forms &amp; nurture</span><em class="gap">!</em></div></div>
-        <div class="lane"><h4>3 · Sales</h4><div class="nd"><img src="assets/icons/stack-microsoft-dynamics.svg" alt=""><span>Dynamics CRM</span></div><div class="nd az"><b>Az</b><span>Azure SQL warehouse</span></div></div>
-        <div class="lane"><h4>4 · Reporting</h4><div class="nd"><img src="assets/icons/stack-power-bi.svg" alt=""><span>Power BI</span></div><div class="nd"><img src="assets/icons/viz-line.svg" alt=""><span>Hub dashboards</span><em class="gap">!</em></div></div>
-      </div>
-      <div class="lg2"><span><i class="sol"></i>documented flow</span><span><i class="das"></i>inferred, to confirm</span><span><em class="gap">!</em>gap or risk</span></div>
-    </div></div>
-  </div>
-  <div class="foot"><a href="#top">Appendix · WorldStrides, Sep – Oct 2026 · systems simplified for this deck</a><span class="pg"></span></div>
-</section>
-
-<section class="slide" id="intel">
-  <span class="chip">Creative · Competitive intelligence</span>
-  <h1>Competitive intelligence</h1>
-  <div class="case">
-    <div class="story">
-      <div><h3>Problem</h3><p>Competitor tracking was occasional screenshots. We could not say what rivals were running this week, how they nurture a parent, or what their landing pages promise.</p></div>
-      <div><h3>What I did</h3><p>Built scrapers and agents that collect it on a schedule: ads, nurture emails and landing pages, plus a swipe file. Claude summarizes each run into themes the team can act on.</p></div>
-      <div class="res"><h3>Result</h3><p>Rival creative and nurture sequences are now an input to our own: briefs, landing-page redesigns and the nurture rebuild start from them.</p></div>
-    </div>
-    <div class="vis"><div class="ci">
-      <div class="strip"><h4>Weekly ad monitor · four rivals’ live Meta ads, with themes and word clouds</h4>
-        <div class="ads"><img src="assets/comp-ad-1.jpg" alt=""><img src="assets/comp-ad-2.jpg" alt=""><img src="assets/comp-ad-3.jpg" alt=""><img src="assets/comp-ad-4.jpg" alt=""></div></div>
-      <div class="intel">
-      <div class="ic"><div class="n">11</div><b>Nurture intelligence</b><span>A test parent persona signs up to each rival; every email lands on a Day-0 timeline</span></div>
-      <div class="ic"><div class="n">14</div><b>Landing-page benchmark</b><span>Competitor pages captured on desktop and mobile, section by section</span></div>
-      <div class="ic"><div class="n">518</div><b>Email archive</b><span>A year of competitor emails, tagged by offer, timing and format</span></div>
-      <div class="ic"><div class="n">56 → 12</div><b>Ad swipe file</b><span>56 standout ads grouped into 12 creative patterns</span></div>
-      </div>
-    </div></div>
-  </div>
-  <div class="foot"><a href="#top">Creative · WorldStrides, FY26 – FY27 · competitor ads are public, from the Meta Ad Library</a><span class="pg"></span></div>
-</section>
-
 <section class="slide" id="adstudio">
-  <span class="chip">Creative · Ad Studio</span>
+  <span class="chip">04 · Creative</span>
   <h1>Ad Studio</h1>
   <div class="case">
     <div class="story">
@@ -793,9 +557,294 @@
   </div>
   <div class="foot"><a href="#top">Creative · Oxbridge Meta ads, Oct 2026 · agency dates from its shared deliverables · ad shown: boarding pass, Cambridge (no people)</a><span class="pg"></span></div>
 </section>
+<section class="slide" id="intel">
+  <span class="chip">04 · Creative</span>
+  <h1>Competitive intelligence</h1>
+  <div class="case">
+    <div class="story">
+      <div><h3>Problem</h3><p>Competitor tracking was occasional screenshots. We could not say what rivals were running this week, how they nurture a parent, or what their landing pages promise.</p></div>
+      <div><h3>What I did</h3><p>Built scrapers and agents that collect it on a schedule: ads, nurture emails and landing pages, plus a swipe file. Claude summarizes each run into themes the team can act on.</p></div>
+      <div class="res"><h3>Result</h3><p>Rival creative and nurture sequences are now an input to our own: briefs, landing-page redesigns and the nurture rebuild start from them.</p></div>
+    </div>
+    <div class="vis"><div class="ci">
+      <div class="strip"><h4>Weekly ad monitor · four rivals’ live Meta ads, with themes and word clouds</h4>
+        <div class="ads"><img src="assets/comp-ad-1.jpg" alt=""><img src="assets/comp-ad-2.jpg" alt=""><img src="assets/comp-ad-3.jpg" alt=""><img src="assets/comp-ad-4.jpg" alt=""></div></div>
+      <div class="intel">
+      <div class="ic"><div class="n">11</div><b>Nurture intelligence</b><span>A test parent persona signs up to each rival; every email lands on a Day-0 timeline</span></div>
+      <div class="ic"><div class="n">14</div><b>Landing-page benchmark</b><span>Competitor pages captured on desktop and mobile, section by section</span></div>
+      <div class="ic"><div class="n">518</div><b>Email archive</b><span>A year of competitor emails, tagged by offer, timing and format</span></div>
+      <div class="ic"><div class="n">56 → 12</div><b>Ad swipe file</b><span>56 standout ads grouped into 12 creative patterns</span></div>
+      </div>
+    </div></div>
+  </div>
+  <div class="foot"><a href="#top">Creative · WorldStrides, FY26 – FY27 · competitor ads are public, from the Meta Ad Library</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="library">
+  <span class="chip">04 · Creative</span>
+  <h1>Creative Library: The problem</h1>
+  <div class="srcs"><b>Where assets lived</b><span>OneDrive creative archive</span><span>Team Google Drives</span><span>Agency export zips</span><span>Separate brand archives</span><span>Personal folders</span></div>
+  <div class="prob">
+    <div class="card"><i>1</i><b>No central place to find assets</b><span>Marketing, sales and agency partners had no single place to search. Finding the right shot meant asking around and digging through folders.</span></div>
+    <div class="card"><i>2</i><b>Quality varied folder to folder</b><span>Strong photos sat next to blurry, duplicate and off-brand ones, with no way to tell them apart without opening each file.</span></div>
+  </div>
+  <div class="race cost"><h4>Yearly cost for 100 users</h4>
+    <div class="lane2"><b>Previous solution</b><div class="track"><i class="ag" style="left:0;width:100%"></i></div><span class="old">Dropbox Business Standard: $15 a user a month = <strong>$18,000 a year</strong></span></div>
+    <div class="lane2"><b>Mine</b><div class="track"><i class="me" style="left:0;width:.6%"></i></div><span><strong>$9 a month = $108 a year</strong>, about $17,900 saved</span></div>
+  </div>
+  <div class="foot"><a href="#top">Envision Creative Library, built Sep 2026 · Dropbox list price, Business Standard billed yearly, Nov 2026</a><span class="pg"></span></div>
+</section>
+
+<section class="slide">
+  <span class="chip">04 · Creative</span>
+  <h1>Creative Library: What I built</h1>
+  <div class="body" style="gap:56px;margin-top:40px;margin-bottom:44px">
+    <div class="shot"><div class="bar"><i></i><i></i><i></i><span>library.envisionexperience · Cloudflare</span></div><img src="assets/library.jpg" alt="Creative library"></div>
+    <div class="stk">
+      <p>27,000 photos and videos in one gated library, searchable in plain language. Every photo is scored for quality and near-duplicates are folded.</p>
+      <h3>On the Mac</h3>
+      <div class="row"><img src="assets/icons/python.svg" alt=""><div>Python ingest<small>every 10 min, metadata and GPS stripped</small></div></div>
+      <div class="row"><img src="assets/icons/apple.svg" alt=""><div>Apple Vision tags<small>on-device, photos of minors never leave the Mac</small></div></div>
+      <div class="row"><span class="gen">AI</span><div>CLIP search · Whisper transcripts<small>on-device models, similar shots folded</small></div></div>
+      <div class="row"><img src="assets/icons/ollama.svg" alt=""><div>Ollama vision model<small>after-hours tagging</small></div></div>
+      <h3>Joined</h3>
+      <div class="row"><img src="assets/icons/meta.svg" alt=""><div>Meta Ads API<small>"Used in ads" filter, "Most ad spend" sort</small></div></div>
+      <h3>Served</h3>
+      <div class="row"><img src="assets/icons/cloudflare.svg" alt=""><div>Cloudflare Worker · R2 · D1<small>password-gated, refreshed every 30 min</small></div></div>
+      <div class="row"><img src="assets/icons/claude.svg" alt=""><div>Built with Claude Code</div></div>
+    </div>
+  </div>
+  <div class="foot"><a href="#top">Envision Creative Library, built Sep 2026 · photos blurred here: they show students</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="launcher">
+  <span class="chip">05 · Marketing automation</span>
+  <h1>Campaign launcher</h1>
+  <div class="case">
+    <div class="story">
+      <div><h3>Problem</h3><p>Direct mail lived in a 450-campaign calendar spreadsheet, digital launches in the agency’s plan, and page, email and CRM readiness in people’s heads. Clashes showed up after launch.</p></div>
+      <div><h3>What I did</h3><p>Built one launch board that merges the mail calendar, the digital plan and each program’s build status: landing pages, nurture emails, CRM tests, brochures. It rebuilds whenever the calendar file changes.</p></div>
+      <div class="res"><h3>Result</h3><p>18 products and every mail drop on one screen. The most-used tool on the hub: 227 views from 19 people in its first month.</p></div>
+    </div>
+    <div class="vis"><div class="board"><div class="bar"><i></i><i></i><i></i><span>Hub · Campaign launch board</span></div>
+      <div class="lb"><div class="lbh"><span>Product</span><div class="months" id="lb-m"></div><span>Brochure</span></div><div id="lb"></div></div>
+      <div class="lg2"><span><i class="dia"></i>digital launch</span><span><i class="bub"></i>mail drop, sized by pieces</span></div>
+    </div></div>
+  </div>
+  <div class="foot"><a href="#top">FY27 launch, Oct 2026 – Feb 2027 · 8 of 18 products shown, names anonymized</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="newsletter">
+  <span class="chip">05 · Marketing automation</span>
+  <h1>Weekly update</h1>
+  <div class="case">
+    <div class="story">
+      <div><h3>Problem</h3><p>Wins, fixes and new tools stayed inside the team that made them. Sales, partners and leadership heard about them late, or not at all.</p></div>
+      <div><h3>What I did</h3><p>Every Friday at 6:30 a Claude agent collects the week’s changes from the workspace and my mailbox and drafts the email in Outlook. I review and edit it, and it goes out first thing Monday morning. Past issues live on the hub, with passwords stripped automatically.</p></div>
+      <div class="res"><h3>Result</h3><p>A weekly habit since late September: 6 issues so far, each one under five minutes of my editing.</p></div>
+    </div>
+    <div class="vis"><div class="mail"><div class="mh"><b>Weekly Update · Week 5</b><span>To: Marketing team · drafted Fri 6:30 AM · sent Mon AM after my review</span></div>
+      <div class="mb">
+        <p class="intro">Good morning, grab your coffee and hop on the marketing news train! Here is what moved last week.</p>
+        <div class="callout"><h5>🙌 Catch of the week</h5><p>A printed QR code worked on one phone type but not the other. Lesson: <b>test every QR code on iOS and Android</b> before sign-off.</p></div>
+        <h5>🔥 Hot from the press</h5><p>New photos are in the shared library, ready for the next round of creative.</p>
+        <h5>📦 New tools &amp; builds</h5><p>A new daily report ties offline campaigns to site traffic.</p>
+        <h5>⚙️ Config &amp; systems</h5><p>Ad audiences now follow one naming convention.</p>
+        <h5>👀 On the lookout for</h5><p>Which attribution rule the team should report on.</p>
+      </div></div></div>
+  </div>
+  <div class="foot"><a href="#top">Sep – Oct 2026 · excerpt shortened and anonymized</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="scorecards">
+  <span class="chip">06 · Reporting</span>
+  <h1>Scorecards</h1>
+  <div class="case">
+    <div class="story">
+      <div><h3>Problem</h3><p>Reporting meant pulling Power BI exports, HubSpot lists and ad-platform screens by hand. No one could see a program against last year at the same point in its cycle.</p></div>
+      <div><h3>What I did</h3><p>Built four scorecards that refresh themselves every morning from the Azure warehouse, GA4, HubSpot and the ad platforms. Each program lines up with last year from its first mail drop. If a source fails, the page keeps yesterday’s data and says so.</p></div>
+      <div class="res"><h3>Result</h3><p>Every program, from mail piece to enrollment, ready before the team logs in. No manual pulls for the weekly review.</p></div>
+    </div>
+    <div class="vis"><div class="sc">
+      <div class="board"><div class="bar"><i></i><i></i><i></i><span>Hub · Programs FY27 Scorecard</span></div>
+        <div class="scb">
+          <div class="fun"><span>Mailed</span><b>→</b><span>Leads</span><b>→</b><span>Opportunities</span><b>→</b><span>Registrations</span><b>→</b><span>Enrolled</span></div>
+          <svg viewBox="0 0 900 300" class="curve"><line x1="40" y1="260" x2="880" y2="260" stroke="#E5E7EB" stroke-width="2"/><line x1="40" y1="20" x2="40" y2="260" stroke="#E5E7EB" stroke-width="2"/>
+            <path d="M40,258 C200,250 300,215 420,175 S650,90 880,62" fill="none" stroke="#A3ABB5" stroke-width="4"/>
+            <path d="M40,258 C190,246 290,200 400,152 S520,112 600,96" fill="none" stroke="#3D7A6A" stroke-width="5"/>
+            <circle cx="600" cy="96" r="8" fill="#3D7A6A"/><text x="586" y="70" font-size="20" font-weight="700" fill="#3D7A6A" text-anchor="end">FY27 today</text>
+            <text x="760" y="50" font-size="20" fill="#6B7280">FY26</text>
+            <text x="460" y="292" font-size="18" fill="#6B7280" text-anchor="middle">days since the program's first mail drop</text></svg>
+        </div></div>
+      <div class="scs">
+        <div><b>Mail pieces</b><span>Dropped by list and audience</span></div>
+        <div><b>Leads</b><span>New leads by source and channel</span></div>
+        <div><b>Opportunities</b><span>Leads that reached a sales conversation</span></div>
+        <div><b>Registrations</b><span>Started and completed</span></div>
+        <div><b>Enrollments</b><span>Paid enrollments vs last year’s pace</span></div>
+        <div><b>Cost per lead</b><span>Paid spend ÷ leads, by platform</span></div>
+        <div><b>Conversion rates</b><span>Lead → registration → enrollment</span></div>
+        <div><b>Site sessions</b><span>Organic and paid landing-page traffic</span></div>
+      </div>
+    </div></div>
+  </div>
+  <div class="foot"><a href="#top">Reporting · FY27, Oct 2026 · simplified for confidentiality: sample KPIs, illustrative curve, real values left out</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="systems">
+  <span class="chip">07 · System integration</span>
+  <h1>Systems map</h1>
+  <div class="case">
+    <div class="story">
+      <div><h3>Problem</h3><p>Leads pass through ad platforms, three websites, HubSpot, Dynamics and an Azure warehouse, each owned by a different team. Nobody had the whole picture, so the same lead was counted differently in each report.</p></div>
+      <div><h3>What I did</h3><p>Interviewed stakeholders across marketing, sales and data, with AI drafting the questions and synthesizing the answers. Catalogued the warehouse read-only (3 databases, ~950 tables). Then generated the map as editable Mural widgets through Mural’s MCP.</p></div>
+      <div class="res"><h3>Result</h3><p>One shared map: 4 lanes, documented vs inferred flows, 3 open gaps. It is now the brief for moving the stack to Dynamics 365 Customer Insights – Journeys.</p></div>
+    </div>
+    <div class="vis"><div class="board"><div class="bar"><i></i><i></i><i></i><span>Mural · Journeys &amp; Flows</span></div>
+      <div class="lanes">
+        <div class="lane"><h4>1 · Acquisition</h4><div class="nd"><img src="assets/icons/meta.svg" alt=""><img src="assets/icons/googleads.svg" alt=""><span>Paid channels</span></div><div class="nd"><img src="assets/icons/viz-bar.svg" alt=""><span>Mail vendors &amp; lists</span><em class="gap">!</em></div></div>
+        <div class="lane"><h4>2 · Lead capture</h4><div class="nd"><img src="assets/icons/wordpress.svg" alt=""><img src="assets/icons/googleanalytics.svg" alt=""><span>Websites &amp; GA4</span></div><div class="nd"><img src="assets/icons/hubspot.svg" alt=""><span>HubSpot forms &amp; nurture</span><em class="gap">!</em></div></div>
+        <div class="lane"><h4>3 · Sales</h4><div class="nd"><img src="assets/icons/stack-microsoft-dynamics.svg" alt=""><span>Dynamics CRM</span></div><div class="nd az"><b>Az</b><span>Azure SQL warehouse</span></div></div>
+        <div class="lane"><h4>4 · Reporting</h4><div class="nd"><img src="assets/icons/stack-power-bi.svg" alt=""><span>Power BI</span></div><div class="nd"><img src="assets/icons/viz-line.svg" alt=""><span>Hub dashboards</span><em class="gap">!</em></div></div>
+      </div>
+      <div class="lg2"><span><i class="sol"></i>documented flow</span><span><i class="das"></i>inferred, to confirm</span><span><em class="gap">!</em>gap or risk</span></div>
+    </div></div>
+  </div>
+  <div class="foot"><a href="#top">WorldStrides, Sep – Oct 2026 · systems simplified for this deck</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="hub">
+  <span class="chip">07 · System integration · Marketing hub</span>
+  <h1>The marketing hub</h1>
+  <div class="mock" style="border-bottom:2px solid var(--line);border-radius:18px;margin-bottom:36px">
+    <div class="bar"><i></i><i></i><i></i><span>marketing-hub · password protected</span></div>
+    <div class="mbody">
+      <nav class="rail">
+        <b>Sections</b>
+        <span class="on">Performance &amp; planning</span><span>Channels</span><span>Website</span><span>Competitors &amp; market</span><span>Creative &amp; brand</span><span>Systems &amp; data quality</span><span>People &amp; enablement</span>
+      </nav>
+      <div class="main">
+        <div class="mhead">
+          <div><div class="mt">Marketing Hub</div><div class="ms">Every report, tracker and tool the team uses, in one place</div></div>
+          <div class="usage"><span><b>41</b> people</span><span><b>1,298</b> views</span><span><b>49</b> tools</span><span>in use since <b>Oct 5</b></span></div>
+        </div>
+        <div class="groups">
+          <div class="gcol"><h4>Data &amp; reporting<span>23</span></h4><div class="tile dyn"><em>Daily</em><b>Program Scorecard</b><small>Every program vs last year, from mail to enrollment</small></div><div class="tile"><b>Launch Board</b><small>18 programs: pages, emails, CRM tests, mail drops</small></div><div class="tile dyn"><em>Daily</em><b>Mail to Site Checker</b><small>Site visits driven by each direct mail drop</small></div><div class="tile dyn"><em>Weekly</em><b>Competitor Ad Report</b><small>New competitor creative each week</small></div></div>
+          <div class="gcol"><h4>Measurement &amp; auditing<span>14</span></h4><div class="tile dyn"><em>Weekly</em><b>Site Accuracy Monitor</b><small>Dates, prices and locations vs the catalog</small></div><div class="tile"><b>Lead-Flow Tests</b><small>Every form tested end to end into the CRM</small></div><div class="tile dyn"><em>Daily</em><b>Event Tracking</b><small>Server-side conversions and ad audiences</small></div><div class="tile"><b>Vanity URL Checker</b><small>Print URLs verified against their tracking</small></div></div>
+          <div class="gcol"><h4>Creative generation<span>9</span></h4><div class="tile dyn"><em>30 min</em><b>Creative Library</b><small>27,000 photos and videos, searchable</small></div><div class="tile"><b>Ad Studio</b><small>Meta static and video ads, built in rounds</small></div><div class="tile"><b>Brochure Builder</b><small>Print-ready program PDFs from one template</small></div><div class="tile"><b>Page Concepts</b><small>Landing pages and site sections, built in a sandbox</small></div></div>
+          <div class="gcol"><h4>Team enablement<span>3</span></h4><div class="tile"><b>Prompting 101</b><small>AI training for the wider team</small></div><div class="tile"><b>Analyst Interview Quiz</b><small>12 questions for marketing data hires</small></div><div class="tile"><b>Personal Branding</b><small>Webinar for the team</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><a href="#top">Envision Hub, WorldStrides · Nov 2026 · simplified for confidentiality</a><span class="pg"></span></div>
+</section>
+
+<section class="slide">
+  <span class="chip">07 · System integration · Marketing hub</span>
+  <h1>How the hub works</h1>
+  <div class="body" style="margin-top:20px">
+    <div class="cyc" id="cyc">
+      <svg viewBox="0 0 1700 700" preserveAspectRatio="none"></svg>
+      <div class="core"><div class="big">49</div><div class="lbl">tools in 7 sections</div></div>
+      <div class="node"><h3><i>1</i>Data sources</h3>
+        <div class="lg"><img src="assets/icons/meta.svg" alt=""><img src="assets/icons/googleads.svg" alt=""><img src="assets/icons/googleanalytics.svg" alt=""><img src="assets/icons/hubspot.svg" alt=""><img src="assets/icons/stack-microsoft-dynamics.svg" alt=""><img src="assets/icons/wordpress.svg" alt=""></div>
+        <p>Ad platforms, GA4, HubSpot, CRM exports, the websites</p><p class="add">+ competitor scrapers: ads, sites, nurture emails</p></div>
+      <div class="node"><h3><i>2</i>Pipeline</h3>
+        <div class="lg"><img src="assets/icons/claude.svg" alt=""><img src="assets/icons/python.svg" alt=""><img src="assets/icons/githubactions.svg" alt=""><img src="assets/icons/apple.svg" alt=""><img src="assets/icons/netlify.svg" alt=""></div>
+        <p>Scheduled jobs written with Claude Code. A run fails loudly if its data is stale.</p></div>
+      <div class="node"><h3><i>3</i>Insights</h3>
+        <div class="lg"><img src="assets/icons/stack-power-bi.svg" alt=""><img src="assets/icons/viz-bar.svg" alt=""><img src="assets/icons/viz-line.svg" alt=""><img src="assets/icons/viz-donut.svg" alt=""></div>
+        <p>Hub reports and Power BI: campaign scorecard, site traffic, competitor ads, blog reads. Daily or weekly.</p></div>
+      <div class="node"><h3><i>4</i>Workflows</h3>
+        <p>Launch board, lead-flow tests, brochure builder, site and URL checks</p></div>
+      <div class="node"><h3><i>5</i>Experimentation</h3>
+        <p>Landing-page versions, ad copy tests, new channels like ChatGPT Ads. Results feed back in as data.</p></div>
+    </div>
+  </div>
+  <div class="foot"><a href="#top">Envision Hub, WorldStrides · Nov 2026 · simplified for confidentiality</a><span class="pg"></span></div>
+</section>
+
+<section class="slide">
+  <span class="chip">07 · System integration · Marketing hub</span>
+  <h1>Who uses the hub</h1>
+  <div class="body" style="gap:80px">
+    <div style="flex:1.7;display:flex;flex-direction:column">
+      <div class="legend"><span><i style="background:var(--sage)"></i>Page views per day</span></div>
+      <svg id="traffic" viewBox="0 0 1000 470" style="width:100%;flex:1;overflow:visible"></svg>
+    </div>
+    <div style="flex:1">
+      <div style="display:flex;gap:60px;margin-bottom:34px">
+        <div class="stat"><div class="n">41</div><div class="l">colleagues</div></div>
+        <div class="stat"><div class="n">1,298</div><div class="l">page views</div></div>
+        <div class="stat"><div class="n">3,426</div><div class="l">in-tool actions</div></div>
+      </div>
+      <ul class="rank" id="top5"></ul>
+    </div>
+  </div>
+  <div class="foot"><a href="#top">GA4 on the hub, 5 Oct – 4 Nov 2026 (tracking began 5 Oct) · right: views and people per tool</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="productivity">
+  <span class="chip">08 · Productivity tracking</span>
+  <h1>September to date</h1>
+  <div class="body" style="gap:70px;margin-top:34px">
+    <div style="flex:1.65;display:flex;flex-direction:column">
+      <div class="legend"><span><i style="background:var(--mute)"></i>Hours I worked</span><span><i style="background:var(--sage)"></i>Claude's output, in hours it would take by hand</span></div>
+      <svg id="xf" viewBox="0 0 1000 400" style="width:100%;flex:1"></svg>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:30px">
+      <div style="display:flex;gap:56px">
+        <div class="stat sm"><div class="n" id="xf-w"></div><div class="l">hours I worked</div></div>
+        <div class="stat sm"><div class="n" id="xf-o"></div><div class="l">Claude's output, in hand-work hours</div></div>
+      </div>
+      <div style="display:flex;gap:56px">
+        <div class="stat"><div class="n" id="xf-x"></div><div class="l">output per hour worked</div></div>
+        <div class="stat"><div class="n" id="xf-ai"></div><div class="l">per hour Claude ran</div></div>
+      </div>
+      <div class="est">I estimate my productivity at about <b>4×</b> that of a contributor working without AI.</div>
+    </div>
+  </div>
+  <div class="agents">
+    <div class="card"><b>Agent 1 · Hours tracker</b>Every 30 seconds it logs keyboard and mouse activity and the app in front, adds work-browser visits and Teams calls, and gives each minute one state: meeting, hands-on, reading or personal. Only work minutes count.</div>
+    <div class="card"><b>Agent 2 · Task rater</b>Every Tuesday a read-only Claude agent scores each Claude Code task from 1 to 5 for tedium and estimates how long it would take by hand, against fixed anchors. Conservative: my review time is not subtracted.</div>
+  </div>
+  <div class="foot"><a href="#top">Work weeks Sep 1 – Nov 1, 2026</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="kudos">
+  <span class="chip">09 · Kudos</span>
+  <h1>Kudos board</h1>
+  <div class="kb">
+    <div class="kc">
+    <div class="kd s"><p>Great examples Louis Belpaire!</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>Chief Product Officer</div></div>
+    <div class="kd l"><p>If you're looking for someone to bridge the gap between high-level strategy and cutting-edge execution, Louie is your person.</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>Growth Marketing Leader · my manager</div></div>
+    <div class="kd "><p>First off, this powerpoint is amazing. … Blown away, thank you so much!</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>Creative lead</div></div>
+    </div>
+    <div class="kc">
+    <div class="kd s"><p>That was incredible!</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>SVP, Delivery</div></div>
+    <div class="kd "><p>Louis doesn't just use AI; he understands how to leverage it to scale impact and deliver results.</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>Growth Marketing Leader · my manager</div></div>
+    <div class="kd "><p>Wow... you are the master of charts and graphs</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>Marketing colleague</div></div>
+    </div>
+    <div class="kc">
+    <div class="kd "><p>That was great to see!!! … I'm excited to see how we scale use this across the board.</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>SVP, Marketing</div></div>
+    <div class="kd "><p>Louis, you did a great job with the … page!</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>Founder, creative agency</div></div>
+    <div class="kd s"><p>Great job driving that meeting with the visual.</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>Marketing colleague</div></div>
+    </div>
+    <div class="kc">
+    <div class="kd "><p>Outstanding work sir; thank you for showing the team ‘the art of the possible’.</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>VP, Partnerships</div></div>
+    <div class="kd "><p>You are truly one of the sharpest people I've ever met.</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>Agency leadership</div></div>
+    </div>
+    <div class="kc">
+    <div class="kd l"><p>Louis' ability to synthesize complex problems and datasets, then to provide forward-thinking ideas and solutions is unlike any I've seen before.</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>VP, Marketing Strategy & Operations</div></div>
+    <div class="kd "><p>“That was the single most impactful example of a creative optimization I've ever seen”</p><div class="who"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Client, relayed by agency leadership</div></div>
+    </div>
+  </div>
+  <div class="foot"><a href="#top"></a><span class="pg"></span></div>
+</section>
 
 <script>
-const D = {"title": "Director, Marketing Transformation & Performance", "title_since": "2026-08", "hub": {"tools": 49, "sections": 7, "since": "2026-10-05", "until": "2026-11-04", "users": 41, "views": 1298, "events": 3426, "daily": [["10-05", 9, 22], ["10-06", 6, 52], ["10-07", 4, 5], ["10-08", 6, 10], ["10-09", 1, 2], ["10-10", 0, 0], ["10-11", 2, 6], ["10-12", 5, 20], ["10-13", 6, 30], ["10-14", 8, 56], ["10-15", 1, 17], ["10-16", 10, 76], ["10-17", 1, 23], ["10-18", 2, 47], ["10-19", 13, 75], ["10-20", 5, 40], ["10-21", 7, 49], ["10-22", 6, 66], ["10-23", 6, 56], ["10-24", 0, 0], ["10-25", 0, 0], ["10-26", 8, 48], ["10-27", 6, 56], ["10-28", 6, 43], ["10-29", 5, 42], ["10-30", 9, 36], ["10-31", 1, 6], ["11-01", 1, 18], ["11-02", 11, 104], ["11-03", 14, 185], ["11-04", 10, 108]], "top": [["FY27 Launch Board", 366, 22], ["Oxbridge Scorecard", 79, 11], ["Site Accuracy Monitor", 79, 12], ["Ad Studio", 63, 9], ["Program Scorecard", 39, 5]]}, "pacman": {"rows": [["Downloadables", "Brochures and lead magnets", 100], ["Landing pages & modules", "Bespoke per program", 100], ["Form fields & compliance", "Mapped, audited and tested by API", 100], ["Campaign reporting", "Live scorecards, refreshed daily", 100], ["Web development", "WordPress backend via the WP Engine API", 90], ["Marketing ops project management", "The FY27 launch board", 50], ["Email workflow configuration", "HubSpot emails via the API", 50], ["Copy & UX strategy", "Human-led", 20]]}, "xfactor": {"weeks": [["Sep 1", 23.2, 18], ["Sep 7", 29.0, 142], ["Sep 14", 39.7, 198], ["Sep 21", 46.9, 141.1], ["Sep 28", 58.7, 83.4], ["Oct 5", 38.8, 71.1], ["Oct 12", 61.9, 99.2], ["Oct 19", 40.2, 123.4], ["Oct 26", 57.1, 284.0]], "worked": 395.5, "output": 1160, "ai_hours": 55.6, "x": 3.9, "per_ai_hour": 21, "by_tedium": [["Trivial", 7.2], ["Light", 14.9], ["Moderate", 19.8], ["Tedious", 26.8]]}, "library": {"photos": 21830, "videos": 5254}, "fy25": {"leads": 63, "enrollments": 15, "budget": -23}, "activities": {"tasks": 389, "hand_h": 593, "rows": [["Creative", "Landing pages, brochures, Meta static and video ads", 81, 152, 22.3, "Meta ad set, 16 statics in 3 sizes + 4 videos: ~12 h by hand, Claude ran 17 min"], ["Uptime & accuracy monitoring", "Site accuracy scans, form tests, redirects, audits", 92, 133, 15.9, "Weekly site accuracy scan, 40 pages: ~12 h by hand, Claude ran 16 min"], ["Marketing automation", "Lead nurture, HubSpot emails and workflow builds", 81, 108, 24.2, "21 HubSpot nurture emails: ~10 h by hand, Claude ran 13 min"], ["System integration", "APIs, pipelines and data syncs", 44, 75, 24.2, "GA4 pull and calendar parse into a new hub tool: ~8 h by hand, Claude ran 7 min"], ["Reporting & scorecards", "Scorecards, dashboards and recurring reports", 35, 63, 25.4, "Cohort-to-enrollment view on a live scorecard: ~6 h by hand, Claude ran 18 min"], ["Measurement deployment", "Tagging, GA4 events, pixels, server-to-server, offline conversions", 19, 39, 33.8, "Offline-conversion file, 4,161 leads hashed: ~5 h by hand, Claude ran 9 min"], ["Website improvement & UX", "Page sections, layouts and site fixes", 37, 23, 12.3, "Webinar section with a live countdown: ~4 h by hand, Claude ran 11 min"]]}, "launcher": {"rows": [["Product 1", "2026-10-19", [["2026-10-23", 22], ["2026-10-30", 19], ["2026-11-13", 11], ["2027-01-01", 15], ["2027-02-12", 2]], "done"], ["Product 2", "2026-11-02", [["2026-10-16", 18], ["2026-10-23", 58], ["2026-11-20", 60], ["2026-12-04", 40], ["2027-01-01", 30], ["2027-02-05", 78], ["2027-02-26", 7]], "done"], ["Product 3", "2026-11-03", [["2026-10-16", 33], ["2026-10-23", 110], ["2026-11-13", 103], ["2027-01-22", 37], ["2027-02-05", 127], ["2027-02-26", 18]], "prog"], ["Product 4", "2026-11-13", [["2026-10-23", 23], ["2026-11-20", 133], ["2026-11-25", 22], ["2026-12-04", 34], ["2027-01-22", 28], ["2027-02-05", 108]], "prog"], ["Product 5", "2026-12-01", [["2026-10-23", 16], ["2026-10-30", 24], ["2026-11-06", 11], ["2026-12-04", 22], ["2027-01-01", 16], ["2027-01-15", 44], ["2027-02-12", 16]], "done"], ["Product 6", "2026-12-01", [["2026-10-16", 46], ["2026-10-23", 62], ["2026-10-30", 20], ["2026-11-06", 22], ["2026-12-04", 34], ["2027-01-15", 88], ["2027-01-22", 34], ["2027-02-05", 69], ["2027-02-12", 98]], "done"], ["Product 7", "2026-12-01", [["2026-10-30", 17], ["2026-12-04", 16], ["2027-01-01", 21], ["2027-01-15", 24], ["2027-02-12", 10]], "done"], ["Product 8", "2026-12-01", [["2026-10-23", 4], ["2027-01-01", 12], ["2027-01-15", 11], ["2027-02-12", 6]], "done"]]}, "cases": {}};
+const D = {"title": "Director, Marketing Transformation & Performance", "title_since": "2026-08", "hub": {"tools": 49, "sections": 7, "since": "2026-10-05", "until": "2026-11-04", "users": 41, "views": 1298, "events": 3426, "daily": [["10-05", 9, 22], ["10-06", 6, 52], ["10-07", 4, 5], ["10-08", 6, 10], ["10-09", 1, 2], ["10-10", 0, 0], ["10-11", 2, 6], ["10-12", 5, 20], ["10-13", 6, 30], ["10-14", 8, 56], ["10-15", 1, 17], ["10-16", 10, 76], ["10-17", 1, 23], ["10-18", 2, 47], ["10-19", 13, 75], ["10-20", 5, 40], ["10-21", 7, 49], ["10-22", 6, 66], ["10-23", 6, 56], ["10-24", 0, 0], ["10-25", 0, 0], ["10-26", 8, 48], ["10-27", 6, 56], ["10-28", 6, 43], ["10-29", 5, 42], ["10-30", 9, 36], ["10-31", 1, 6], ["11-01", 1, 18], ["11-02", 11, 104], ["11-03", 14, 185], ["11-04", 10, 108]], "top": [["FY27 Launch Board", 366, 22], ["Oxbridge Scorecard", 79, 11], ["Site Accuracy Monitor", 79, 12], ["Ad Studio", 63, 9], ["Program Scorecard", 39, 5]]}, "pacman": {"rows": [["Downloadables", "Brochures and lead magnets", 100], ["Landing pages & modules", "Bespoke per program", 100], ["Form fields & compliance", "Mapped, audited and tested by API", 100], ["Campaign reporting", "Live scorecards, refreshed daily", 100], ["Web development", "WordPress backend via the WP Engine API", 90], ["Marketing ops project management", "The FY27 launch board", 50], ["Email workflow configuration", "HubSpot emails via the API", 50], ["Copy & UX strategy", "Human-led", 20]]}, "xfactor": {"weeks": [["Sep 1", 23.2, 18], ["Sep 7", 29.0, 142], ["Sep 14", 39.7, 198], ["Sep 21", 46.9, 141.1], ["Sep 28", 58.7, 83.4], ["Oct 5", 38.8, 71.1], ["Oct 12", 61.9, 99.2], ["Oct 19", 40.2, 123.4], ["Oct 26", 57.1, 284.0]], "worked": 395.5, "output": 1160, "ai_hours": 55.6, "x": 3.9, "per_ai_hour": 21, "by_tedium": [["Trivial", 7.2], ["Light", 14.9], ["Moderate", 19.8], ["Tedious", 26.8]]}, "library": {"photos": 21830, "videos": 5254}, "fy25": {"leads": 63, "enrollments": 15, "budget": -23}, "activities": {"tasks": 389, "hand_h": 593, "rows": [["Creative", "Landing pages, brochures, Meta static and video ads", 81, 152, 22.3, "Meta ad set, 16 statics in 3 sizes + 4 videos: ~12 h by hand, Claude ran 17 min"], ["Marketing automation", "Lead nurture, HubSpot emails and workflow builds", 81, 108, 24.2, "21 HubSpot nurture emails: ~10 h by hand, Claude ran 13 min"], ["Reporting & scorecards", "Scorecards, dashboards and recurring reports", 35, 63, 25.4, "Cohort-to-enrollment view on a live scorecard: ~6 h by hand, Claude ran 18 min"], ["System integration", "APIs, pipelines and data syncs", 44, 75, 24.2, "GA4 pull and calendar parse into a new hub tool: ~8 h by hand, Claude ran 7 min"], ["Uptime & accuracy monitoring", "Site accuracy scans, form tests, redirects, audits", 92, 133, 15.9, "Weekly site accuracy scan, 40 pages: ~12 h by hand, Claude ran 16 min"], ["Measurement deployment", "Tagging, GA4 events, pixels, server-to-server, offline conversions", 19, 39, 33.8, "Offline-conversion file, 4,161 leads hashed: ~5 h by hand, Claude ran 9 min"], ["Website improvement & UX", "Page sections, layouts and site fixes", 37, 23, 12.3, "Webinar section with a live countdown: ~4 h by hand, Claude ran 11 min"]]}, "launcher": {"rows": [["Product 1", "2026-10-19", [["2026-10-23", 22], ["2026-10-30", 19], ["2026-11-13", 11], ["2027-01-01", 15], ["2027-02-12", 2]], "done"], ["Product 2", "2026-11-02", [["2026-10-16", 18], ["2026-10-23", 58], ["2026-11-20", 60], ["2026-12-04", 40], ["2027-01-01", 30], ["2027-02-05", 78], ["2027-02-26", 7]], "done"], ["Product 3", "2026-11-03", [["2026-10-16", 33], ["2026-10-23", 110], ["2026-11-13", 103], ["2027-01-22", 37], ["2027-02-05", 127], ["2027-02-26", 18]], "prog"], ["Product 4", "2026-11-13", [["2026-10-23", 23], ["2026-11-20", 133], ["2026-11-25", 22], ["2026-12-04", 34], ["2027-01-22", 28], ["2027-02-05", 108]], "prog"], ["Product 5", "2026-12-01", [["2026-10-23", 16], ["2026-10-30", 24], ["2026-11-06", 11], ["2026-12-04", 22], ["2027-01-01", 16], ["2027-01-15", 44], ["2027-02-12", 16]], "done"], ["Product 6", "2026-12-01", [["2026-10-16", 46], ["2026-10-23", 62], ["2026-10-30", 20], ["2026-11-06", 22], ["2026-12-04", 34], ["2027-01-15", 88], ["2027-01-22", 34], ["2027-02-05", 69], ["2027-02-12", 98]], "done"], ["Product 7", "2026-12-01", [["2026-10-30", 17], ["2026-12-04", 16], ["2027-01-01", 21], ["2027-01-15", 24], ["2027-02-12", 10]], "done"], ["Product 8", "2026-12-01", [["2026-10-23", 4], ["2027-01-01", 12], ["2027-01-15", 11], ["2027-02-12", 6]], "done"]]}, "cases": {}};
 document.querySelectorAll(".slide").forEach((sl, i) => { const pg = sl.querySelector(".pg"); if (pg) pg.textContent = String(i + 1).padStart(2, "0"); });
 const NS = "http://www.w3.org/2000/svg";
 const el = (tag, a, txt) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; return e; };
@@ -832,8 +881,9 @@ function bar(svg, x, y0, w, h, fill) {
   // Before (hand hours) and after (Claude run hours) on one shared hour scale.
   const A = D.activities, max = Math.max(...A.rows.map(r => r[3]));
   const fmt = v => v < 10 ? v.toFixed(1).replace(/\.0$/, "") : Math.round(v);
-  const row = (n, sub, h, x, cls = "") => { const a = h / x;
-    return `<div class="r ${cls}"><div class="nm">${n}<small>${sub}</small></div><div class="bars">` +
+  const GO = { "Creative": ["#creative", "04"], "Marketing automation": ["#launcher", "05"], "Reporting & scorecards": ["#scorecards", "06"], "System integration": ["#systems", "07"] };
+  const row = (n, sub, h, x, cls = "") => { const a = h / x, g = GO[n];
+    return `<div class="r ${cls}"><div class="nm">${n}${g ? `<a class="go" href="${g[0]}">${g[1]} →</a>` : ""}<small>${sub}</small></div><div class="bars">` +
       `<div class="b"><i class="bef" style="width:${h / max * 85}%"></i><em>${fmt(h)} h</em></div>` +
       `<div class="b"><i class="aft" style="width:${Math.max(a / max * 85, .5)}%"></i><em class="g">${fmt(a)} h</em></div></div>` +
       `<div class="lv">${Math.round(x)}×</div></div>`; };
