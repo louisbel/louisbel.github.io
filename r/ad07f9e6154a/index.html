@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(f => { addEventListener("resize", f); f(); })(() => document.documentElement.style.zoom = Math.min(1, innerWidth / 1960));</script>
+
+<title>Louis Belpaire · Resume Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #3D7A6A; --teal: #4A7B70; --navy: #2D3748; --gray: #6B7280; --yellow: #F5D76E;
+    --off: #F5F5F5; --line: #E5E7EB; --sage-soft: #E3EEEA; --mute: #A3ABB5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: 1920px 1080px; margin: 0; }
+  html { background: #cfd4d2; }
+  body { font-family: Inter, system-ui, sans-serif; color: var(--navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .slide {
+    width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #fff;
+    padding: 84px 110px 70px; display: flex; flex-direction: column; margin: 0 auto 40px; break-after: page;
+  }
+  @media print { html { background: none; } .slide { margin: 0; } }
+  .chip { align-self: flex-start; font-size: 19px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+          color: var(--sage); background: var(--sage-soft); border-radius: 999px; padding: 9px 20px; margin-bottom: 30px; }
+  h1 { font-size: 76px; line-height: 1.04; font-weight: 800; letter-spacing: -.025em; max-width: 1500px; }
+  h1 em { font-style: normal; }
+  .hl { font-style: italic; background: linear-gradient(transparent 58%, var(--yellow) 58%, var(--yellow) 92%, transparent 92%); padding: 0 .08em; }
+  .sub { font-size: 30px; line-height: 1.4; color: var(--gray); margin-top: 22px; max-width: 1300px; }
+  .foot { position: absolute; left: 110px; right: 110px; bottom: 38px; display: flex; justify-content: space-between;
+          font-size: 17px; color: var(--mute); }
+  .body { flex: 1; display: flex; min-height: 0; margin-top: 46px; }
+  .stat .n { font-size: 84px; font-weight: 800; letter-spacing: -.03em; color: var(--sage); line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat .l { font-size: 23px; color: var(--gray); margin-top: 10px; line-height: 1.35; }
+  .card { background: var(--off); border-radius: 22px; padding: 30px 34px; }
+
+  /* cover */
+  .cover { background: var(--teal); color: #fff; padding: 0; flex-direction: row; }
+  .cover .txt { flex: 1; padding: 120px 0 90px 120px; display: flex; flex-direction: column; }
+  .cover .name { font-size: 132px; font-weight: 800; letter-spacing: -.035em; line-height: .95; }
+  .cover .role { font-size: 34px; font-weight: 600; margin-top: 34px; }
+  .cover .role span { opacity: .75; font-weight: 500; }
+  .cover .line { font-size: 44px; font-weight: 700; line-height: 1.2; margin-top: auto; max-width: 900px; }
+  .cover .line em { font-style: italic; color: var(--navy); background: var(--yellow); padding: 0 .12em; }
+  .cover .meta { font-size: 23px; margin-top: auto; display: flex; gap: 14px 34px; flex-wrap: wrap; }
+  .cover .meta a { color: #fff; text-decoration: none; border-bottom: 2px solid var(--yellow); padding-bottom: 2px; }
+  .cover .meta > span { opacity: .85; flex-basis: 100%; }
+  .cover .photo { position: relative; width: 440px; height: 440px; flex: none; align-self: center; margin: 0 170px 0 0; border-radius: 50%; box-shadow: 0 0 0 8px rgba(255,255,255,.2), 0 30px 60px -20px rgba(0,0,0,.35); background: url(assets/headshot.jpg) center 18% / cover; }
+  .cover .photo::after { content: ""; position: absolute; inset: -46px; border-radius: 50%; border: 2px solid rgba(255,255,255,.16); }
+  .cover .photo::before { content: ""; position: absolute; width: 26px; height: 26px; border-radius: 50%; background: var(--yellow); right: 19px; top: 19px; z-index: 1; }
+
+  /* timeline */
+  .tl { position: relative; margin-top: 64px; display: grid; grid-template-columns: 1fr 1.75fr 1.75fr; gap: 0; }
+  .tl .seg { border-top: 10px solid var(--line); padding: 34px 40px 0 0; position: relative; }
+  .tl .seg.now { border-color: var(--sage); }
+  .tl .seg::before { content: ""; position: absolute; top: -21px; left: 0; width: 32px; height: 32px; border-radius: 50%; background: #fff; border: 8px solid var(--mute); }
+  .tl .seg.now::before { border-color: var(--sage); }
+  .tl .yr { font-size: 22px; font-weight: 700; color: var(--gray); letter-spacing: .04em; }
+  .tl .co { height: 92px; margin-top: 14px; display: flex; align-items: flex-end; }
+  .tl .co img { display: block; }
+  .tl .ro { font-size: 21px; color: var(--gray); margin-top: 14px; line-height: 1.45; }
+  .tl .ro b { color: var(--navy); font-weight: 600; }
+  .tl .kp { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+  .tl .kp span { font-size: 19px; font-weight: 600; background: var(--off); border-radius: 999px; padding: 8px 16px; }
+
+  /* team */
+  .team { display: grid; grid-template-columns: 1fr 120px 1fr; align-items: center; width: 100%; }
+  .team .side h3 { font-size: 22px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray); margin-bottom: 26px; }
+  .people { display: flex; gap: 22px; flex-wrap: wrap; }
+  .p { width: 170px; text-align: center; }
+  .p .dot { width: 132px; height: 132px; border-radius: 50%; margin: 0 auto; background: var(--line); display: grid; place-items: center;
+            font-size: 50px; font-weight: 800; color: #fff; }
+  .p .dot.me { background: var(--sage); }
+  .p .dot.cl { background: #D97757; font-size: 30px; }
+  .p .dot.part { background: repeating-linear-gradient(45deg, var(--mute) 0 10px, #c4cad1 10px 20px); }
+  .p .t { font-size: 19px; color: var(--gray); margin-top: 14px; line-height: 1.35; }
+  .arrow { font-size: 80px; color: var(--sage); text-align: center; }
+
+  /* architecture */
+  .arch { display: grid; grid-template-columns: 1fr 70px 1.1fr 70px 1.15fr 70px .95fr; align-items: stretch; width: 100%; }
+  .arch .col { display: flex; flex-direction: column; gap: 12px; }
+  .arch .col h3 { font-size: 19px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
+  .box { border: 2px solid var(--line); border-radius: 14px; padding: 13px 18px; font-size: 21px; font-weight: 600; background: #fff; }
+  .box small { display: block; font-size: 16.5px; font-weight: 500; color: var(--gray); margin-top: 3px; }
+  .box.key { border-color: var(--sage); background: var(--sage-soft); }
+  .hubcore { flex: 1; border-radius: 22px; background: var(--sage); color: #fff; padding: 32px; display: flex; flex-direction: column; }
+  .hubcore .big { font-size: 96px; font-weight: 800; line-height: 1; letter-spacing: -.03em; }
+  .hubcore .lbl { font-size: 24px; opacity: .9; margin-top: 6px; }
+  .hubcore ul { list-style: none; margin-top: auto; font-size: 20px; line-height: 1.7; opacity: .95; }
+  .flow { display: grid; place-items: center; color: var(--sage); font-size: 44px; font-weight: 300; }
+
+  /* charts */
+  svg text { font-family: Inter, system-ui, sans-serif; }
+  .legend { display: flex; gap: 30px; font-size: 21px; color: var(--gray); margin-bottom: 14px; }
+  .legend i { display: inline-block; width: 18px; height: 18px; border-radius: 4px; margin-right: 10px; vertical-align: -2px; }
+  .rank { list-style: none; }
+  .rank li { display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 15px 0; border-bottom: 2px solid var(--line); font-size: 23px; font-weight: 600; }
+  .rank li span { color: var(--gray); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+  /* pacman */
+  .pm { width: 100%; display: grid; gap: 16px; margin-top: 6px; }
+  .pm .row { display: grid; grid-template-columns: 470px 1fr 110px; align-items: center; gap: 30px; }
+  .pm .nm { font-size: 26px; font-weight: 700; line-height: 1.15; }
+  .pm .nm small { display: block; font-size: 18px; font-weight: 500; color: var(--gray); margin-top: 3px; }
+  .pm .lane { position: relative; height: 56px; }
+  .pm .pc { font-size: 34px; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* workflow table */
+  .wf { width: 100%; border-collapse: collapse; }
+  .wf th { text-align: left; font-size: 18px; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); font-weight: 600; padding: 0 0 16px; }
+  .wf td { padding: 21px 0; border-top: 2px solid var(--line); font-size: 25px; vertical-align: middle; }
+  .wf td.w { font-weight: 700; width: 30%; }
+  .wf td.b { color: var(--gray); width: 25%; }
+  .wf td.a { font-weight: 700; color: var(--sage); width: 27%; }
+  .wf td.x { text-align: right; }
+  .wf .mult { display: inline-block; font-size: 22px; font-weight: 800; background: var(--sage-soft); color: var(--sage); border-radius: 999px; padding: 6px 16px; }
+
+  /* quotes */
+  .q { font-size: 30px; font-weight: 700; font-style: italic; line-height: 1.3; }
+  .q + .who { font-size: 19px; color: var(--gray); margin-top: 10px; letter-spacing: .08em; text-transform: uppercase; }
+
+  .mock, .shot { flex: 1; margin-top: 40px; border: 2px solid var(--line); border-bottom: 0; border-radius: 18px 18px 0 0; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(45,55,72,.12); }
+  .shot { margin-top: 0; border-bottom: 2px solid var(--line); border-radius: 18px; }
+  .shot img { width: 100%; display: block; }
+  .bar { height: 46px; background: var(--off); display: flex; align-items: center; gap: 9px; padding: 0 20px; border-bottom: 2px solid var(--line); flex: none; }
+  .bar i { width: 13px; height: 13px; border-radius: 50%; background: #d5d9de; }
+  .bar span { margin-left: 18px; font-size: 16px; color: var(--gray); background: #fff; border-radius: 8px; padding: 5px 16px; }
+  .mbody { flex: 1; display: flex; min-height: 0; }
+  .rail { width: 250px; background: #fff; border-right: 2px solid var(--line); padding: 26px 22px; display: flex; flex-direction: column; gap: 4px; font-size: 18px; color: var(--gray); }
+  .rail b { font-size: 14px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+  .rail span { padding: 6px 12px; border-radius: 8px; }
+  .rail span.on { background: var(--sage-soft); color: var(--sage); font-weight: 700; }
+  .main { flex: 1; padding: 26px 34px 0; background: #FAFAF9; }
+  .mhead { display: flex; justify-content: space-between; align-items: flex-start; }
+  .mt { font-size: 32px; font-weight: 800; } .ms { font-size: 18px; color: var(--gray); margin-top: 4px; }
+  .usage { display: flex; gap: 10px; } .usage span { font-size: 17px; color: var(--gray); background: #fff; border: 2px solid var(--line); border-radius: 999px; padding: 7px 16px; }
+  .usage b { color: var(--navy); }
+  .pills { display: flex; gap: 10px; margin: 20px 0; } .pills span { font-size: 16px; font-weight: 600; border: 2px solid var(--line); border-radius: 999px; padding: 6px 15px; background: #fff; }
+  .pills .on { background: var(--navy); border-color: var(--navy); color: #fff; } .pills .dyn { color: var(--sage); border-color: var(--sage); }
+  .groups { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 24px; }
+  .gcol { display: flex; flex-direction: column; gap: 12px; }
+  .gcol h4 { margin: 0 0 2px; font-size: 17px; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); display: flex; justify-content: space-between; border-bottom: 3px solid var(--sage); padding-bottom: 8px; }
+  .gcol h4 span { color: var(--sage); }
+  .gcol .tile em { position: static; float: right; margin: 0 0 0 10px; }
+  .gcol .tile b { font-size: 19px; }
+  .tile { background: #fff; border: 2px solid var(--line); border-radius: 14px; padding: 16px 18px; position: relative; }
+  .tile.dyn { border-color: var(--sage); }
+  .tile em { position: absolute; top: 16px; right: 16px; font-style: normal; font-size: 13px; font-weight: 700; color: var(--sage); background: var(--sage-soft); border-radius: 999px; padding: 3px 10px; }
+  .tile em::before { content: "● "; }
+  .tile b { display: block; font-size: 20px; } .tile small { display: block; font-size: 15.5px; color: var(--gray); margin-top: 5px; line-height: 1.35; }
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 34px 40px; margin-top: 56px; }
+  .skills div { border-top: 4px solid var(--sage); padding-top: 14px; }
+  .skills b { display: block; font-size: 30px; } .skills span { display: block; font-size: 23px; color: var(--gray); margin-top: 6px; line-height: 1.4; }
+  .stack { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: auto; margin-bottom: 50px; }
+  .stack b { font-size: 17px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray); margin-right: 10px; }
+  .stack span { font-size: 18px; font-weight: 600; background: var(--off); border-radius: 999px; padding: 7px 15px; }
+  .stack span.k { background: var(--sage); color: #fff; }
+  .links a { color: var(--navy); text-decoration: none; }
+  .links li { list-style: none; display: grid; grid-template-columns: 1fr auto; padding: 17px 0; border-bottom: 2px solid var(--line); font-size: 25px; font-weight: 600; }
+  .links li span { color: var(--gray); font-weight: 500; font-size: 20px; }
+
+  /* cover contents + contact icons */
+  .toc { list-style: none; margin-top: 64px; display: grid; gap: 10px; }
+  .toc a { color: #fff; text-decoration: none; font-size: 28px; font-weight: 600; display: inline-flex; align-items: baseline; gap: 18px; }
+  .toc .sub { display: block; margin: 4px 0 0 48px; font-size: 22px; opacity: .85; }
+  .toc .sub a { font-size: 22px; font-weight: 500; border-bottom: 1.5px solid var(--yellow); }
+  .toc i { font-style: normal; font-size: 20px; font-weight: 700; color: var(--yellow); letter-spacing: .06em; width: 30px; }
+  .cover .meta a { display: inline-flex; align-items: center; gap: 10px; }
+  .cover .meta img { width: 22px; height: 22px; }
+  .foot a { color: inherit; text-decoration: none; }
+  /* work history KPIs */
+  .tl .kpi { list-style: none; margin-top: 22px; display: grid; gap: 12px; }
+  .tl .kpi li { font-size: 21px; line-height: 1.4; color: var(--gray); padding-left: 18px; position: relative; }
+  .tl .kpi li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--line); }
+  .tl .seg.now .kpi li::before { background: var(--sage); }
+  .tl .kpi b { color: var(--navy); font-weight: 800; }
+  /* logos in boxes */
+  .box img { height: 24px; width: 24px; vertical-align: -5px; margin-right: 10px; }
+  .stk { width: 560px; display: flex; flex-direction: column; gap: 12px; flex: none; }
+  .stk p { font-size: 23px; line-height: 1.45; color: var(--gray); margin-bottom: 6px; }
+  .stk h3 { font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray); margin-top: 8px; }
+  .stk .row { display: flex; align-items: center; gap: 16px; font-size: 21px; font-weight: 600; }
+  .stk .row img, .stk .gen { width: 34px; height: 34px; flex: none; }
+  .stk .gen { border-radius: 8px; background: var(--navy); color: #fff; font-size: 13px; font-weight: 800; display: grid; place-items: center; }
+  .stk small { display: block; font-size: 16.5px; font-weight: 500; color: var(--gray); margin-top: 2px; }
+  .agents { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 26px 0 44px; }
+  .agents .card { font-size: 19px; line-height: 1.5; color: var(--gray); padding: 22px 28px; }
+  .agents b { display: block; color: var(--navy); font-size: 21px; margin-bottom: 6px; }
+  .stack span img { width: 20px; height: 20px; vertical-align: -4px; margin-right: 8px; }
+  .contact { font-size: 25px; line-height: 1.7; display: flex; flex-direction: column; }
+  .contact a { color: var(--navy); text-decoration: none; }
+  .est { font-size: 30px; line-height: 1.35; font-weight: 600; color: var(--navy); border-left: 6px solid var(--sage); padding: 4px 0 4px 26px; }
+  .est b { color: var(--sage); font-weight: 800; }
+  /* time savings */
+  .ts { gap: 90px; margin-top: 44px; }
+  .ts > div { flex: 1; display: flex; flex-direction: column; }
+  .ts h3 { font-size: 19px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray); margin-bottom: 26px; }
+  .auto { display: grid; gap: 19px; }
+  .auto .row { display: grid; grid-template-columns: 330px 1fr 80px; align-items: center; gap: 22px; }
+  .auto .nm { font-size: 23px; font-weight: 600; line-height: 1.2; }
+  .auto .tr { height: 22px; background: var(--off); border-radius: 4px; overflow: hidden; }
+  .auto .tr i { display: block; height: 100%; background: var(--sage); border-radius: 0 4px 4px 0; }
+  .auto .pc { font-size: 25px; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
+  .ba { display: grid; gap: 40px; }
+  .ba .hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .ba .hd b { font-size: 25px; }
+  .ba .x { font-size: 34px; font-weight: 800; color: var(--sage); font-variant-numeric: tabular-nums; }
+  .ba .br { display: flex; align-items: center; gap: 14px; height: 30px; margin-top: 8px; }
+  .ba .br i { display: block; height: 100%; border-radius: 0 4px 4px 0; min-width: 6px; }
+  .ba i.b { background: var(--mute); } .ba i.a { background: var(--sage); }
+  .ba .br em { font-style: normal; font-size: 21px; font-weight: 600; color: var(--gray); white-space: nowrap; }
+  .ba .br:has(i.b) i { max-width: calc(100% - 110px); }
+  .ba .lgd { display: flex; gap: 28px; font-size: 19px; color: var(--gray); }
+  .ba .lgd i { display: inline-block; width: 16px; height: 16px; border-radius: 4px; margin-right: 8px; vertical-align: -2px; }
+  .act .hdr, .act .r { display: grid; grid-template-columns: 600px 1fr 400px 110px; gap: 36px; align-items: center; }
+  .act .hdr { font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); font-weight: 600; padding-bottom: 10px; margin-top: 30px; }
+  .act .hdr span:last-child { text-align: right; }
+  .act .r { border-top: 2px solid var(--line); padding: 20px 0; }
+  .act .nm { font-size: 25px; font-weight: 700; } .act .nm small { display: block; font-size: 17.5px; font-weight: 500; color: var(--gray); margin-top: 3px; }
+  .act .ex { font-size: 19px; color: var(--navy); line-height: 1.35; }
+  .act .hb { display: flex; align-items: center; gap: 12px; } .act .hb i { display: block; height: 22px; background: var(--sage); border-radius: 0 4px 4px 0; max-width: calc(100% - 80px); }
+  .act .hb em small { display: block; font-size: 15px; font-weight: 500; color: var(--gray); }
+  .act .hb em { font-style: normal; line-height: 1.1; font-size: 21px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .act .lv { font-size: 30px; font-weight: 800; color: var(--sage); text-align: right; font-variant-numeric: tabular-nums; }
+  /* hub cycle */
+  .cyc { position: relative; width: 100%; height: 100%; }
+  .cyc svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .cyc .node { position: absolute; width: 400px; transform: translate(-50%, -50%); background: #fff; border: 2px solid var(--line); border-radius: 18px; padding: 18px 22px; }
+  .cyc .node h3 { font-size: 26px; display: flex; align-items: center; gap: 12px; }
+  .cyc .node h3 i { font-style: normal; font-size: 17px; width: 32px; height: 32px; border-radius: 50%; background: var(--sage); color: #fff; display: grid; place-items: center; }
+  .cyc .node .lg { display: flex; gap: 12px; margin-top: 12px; } .cyc .node .lg img { width: 26px; height: 26px; }
+  .cyc .node p { font-size: 18.5px; color: var(--gray); line-height: 1.4; margin-top: 8px; }
+  .cyc .node p.add { color: var(--navy); font-weight: 600; background: var(--sage-soft); border-radius: 10px; padding: 6px 10px; }
+  .cyc .core { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 300px; height: 200px; border-radius: 50%; background: var(--sage); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .cyc .core .big { font-size: 80px; font-weight: 800; line-height: 1; } .cyc .core .lbl { font-size: 20px; opacity: .92; margin-top: 6px; line-height: 1.35; }
+  /* library problem */
+  .srcs { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 56px; }
+  .srcs b { font-size: 17px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray); margin-right: 10px; }
+  .srcs span { font-size: 22px; font-weight: 600; background: var(--off); border-radius: 12px; padding: 10px 18px; }
+  .prob { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 70px; }
+  .prob .card { padding: 56px 60px 64px; }
+  .prob i { font-style: normal; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--coral, #E07A5F); color: #fff; font-size: 24px; font-weight: 800; }
+  .prob b { display: block; font-size: 48px; letter-spacing: -.015em; margin-top: 22px; line-height: 1.15; }
+  .prob span { display: block; font-size: 29px; color: var(--gray); line-height: 1.45; margin-top: 16px; }
+
+  /* appendix */
+  .cover.appx .grp { display: grid; grid-template-columns: repeat(4, auto); gap: 70px; margin-top: 70px; justify-content: start; }
+  .cover.appx .grp h4 { font-size: 20px; letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); }
+  .cover.appx .grp .toc { margin-top: 22px; gap: 16px; } .cover.appx .grp .toc a { font-size: 32px; }
+  .toc .sub br { display: block; content: ""; margin-top: 6px; }
+  .toc .sub { flex-wrap: wrap; max-width: 760px; }
+  .case { flex: 1; min-height: 0; display: grid; grid-template-columns: 600px 1fr; gap: 70px; margin-top: 44px; margin-bottom: 40px; }
+  .story { display: flex; flex-direction: column; gap: 30px; }
+  .story h3 { font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--sage); margin-bottom: 8px; }
+  .story p { font-size: 24px; line-height: 1.45; color: var(--gray); }
+  .story .res { background: var(--sage-soft); border-radius: 18px; padding: 22px 26px; }
+  .story .res p { color: var(--navy); font-weight: 600; }
+  .vis { min-height: 0; display: flex; flex-direction: column; }
+  .board { flex: 1; border: 2px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(45,55,72,.12); background: #FAFAF9; }
+  .board .bar { display: flex; align-items: center; gap: 8px; padding: 12px 18px; background: #fff; border-bottom: 2px solid var(--line); }
+  .board .bar i { width: 11px; height: 11px; border-radius: 50%; background: #D9DCDF; }
+  .board .bar span { margin-left: 14px; font-size: 16px; color: var(--gray); }
+  .lanes { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; padding: 40px 20px 10px; position: relative; }
+  .lane { display: flex; flex-direction: column; gap: 80px; padding: 0 16px; border-right: 2px dashed var(--line); position: relative; }
+  .lane:last-child { border-right: 0; }
+  .lane h4 { font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); }
+  .nd { position: relative; background: #FFF6D5; border-radius: 6px; padding: 16px 16px 18px; box-shadow: 0 6px 14px -8px rgba(0,0,0,.3); font-size: 19px; font-weight: 600; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 170px; align-content: flex-start; }
+  .nd img { width: 30px; height: 30px; } .nd span { flex-basis: 100%; line-height: 1.3; }
+  .nd.az b { width: 30px; height: 30px; border-radius: 6px; background: #0078D4; color: #fff; font-size: 14px; display: grid; place-items: center; }
+  .lane .nd::after { content: ""; position: absolute; right: -36px; top: 50%; width: 30px; border-top: 3px solid var(--sage); }
+  .lane:last-child .nd::after { display: none; }
+  .lane:nth-child(1) .nd:nth-of-type(2)::after, .lane:nth-child(3) .nd:nth-of-type(2)::after { border-top: 3px dashed #D69E2E; }
+  .gap { position: absolute; top: -12px; right: -10px; width: 30px; height: 30px; border-radius: 50%; background: #E07A5F; color: #fff; font-style: normal; font-weight: 800; font-size: 18px; display: grid; place-items: center; }
+  .lg2 { display: flex; gap: 30px; padding: 14px 24px 18px; font-size: 16px; color: var(--gray); align-items: center; }
+  .lg2 span { display: inline-flex; align-items: center; gap: 8px; position: relative; }
+  .lg2 .gap { position: static; width: 22px; height: 22px; font-size: 13px; }
+  .lg2 i { display: inline-block; width: 30px; }
+  .lg2 .sol { border-top: 3px solid var(--sage); } .lg2 .das { border-top: 3px dashed #D69E2E; }
+  .lg2 .dia { width: 14px; height: 14px; background: var(--navy); transform: rotate(45deg); }
+  .lg2 .bub { width: 16px; height: 16px; border-radius: 50%; background: var(--sage); opacity: .75; }
+  .lb { flex: 1; padding: 18px 24px 0; display: flex; flex-direction: column; }
+  .lbh, .lbr { display: grid; grid-template-columns: 250px 1fr 100px; gap: 18px; align-items: center; }
+  .lbh { font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); padding-bottom: 8px; border-bottom: 2px solid var(--line); }
+  .lbh span:last-child, .lbr .st { text-align: center; }
+  .months { display: flex; } .months span { flex: 1; border-left: 1px solid var(--line); padding-left: 6px; }
+  .lbr { height: 62px; border-bottom: 1px solid var(--line); font-size: 18px; font-weight: 600; }
+  .lbr > * { height: 62px; display: flex; align-items: center; } .lbr .st { justify-content: center; }
+  .lbr .lbt { position: relative; }
+  .lbr .lbt b { position: absolute; top: 50%; border-radius: 50%; background: var(--sage); opacity: .7; transform: translate(-50%, -50%); }
+  .lbr .lbt i { position: absolute; top: 50%; width: 16px; height: 16px; background: var(--navy); transform: translate(-50%, -50%) rotate(45deg); z-index: 1; }
+  .lbr .st span { font-size: 13px; font-weight: 700; border-radius: 999px; padding: 3px 10px; background: var(--sage-soft); color: var(--sage); }
+  .lbr .st span.prog { background: #FFF6D5; color: #9A6B00; }
+  .mail { flex: 1; border: 2px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: 0 20px 60px rgba(45,55,72,.12); display: flex; flex-direction: column; }
+  .mail .mh { padding: 18px 28px; border-bottom: 2px solid var(--line); background: #fff; display: flex; flex-direction: column; gap: 4px; }
+  .mail .mh b { font-size: 22px; } .mail .mh span { font-size: 16px; color: var(--gray); }
+  .mail .mb { flex: 1; padding: 20px 34px; background: #FCFCFB; display: flex; flex-direction: column; gap: 8px; font-size: 18px; line-height: 1.45; color: #374151; }
+  .mail .intro { font-style: italic; color: var(--gray); }
+  .mail h5 { font-size: 19px; margin-top: 8px; color: var(--navy); }
+  .mail .callout { background: #FFF8E1; border-left: 5px solid #FFC803; border-radius: 6px; padding: 12px 18px; }
+  .mail u { color: #1F5FBF; text-decoration-color: rgba(31,95,191,.4); }
+  .intel { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-content: start; }
+  .ic { background: var(--off); border-radius: 18px; padding: 24px 28px; }
+  .ic .n { font-size: 44px; font-weight: 800; color: var(--sage); letter-spacing: -.02em; line-height: 1; }
+  .ic b { display: block; font-size: 23px; margin-top: 10px; } .ic span { display: block; font-size: 18.5px; color: var(--gray); margin-top: 6px; line-height: 1.4; }
+  .cmp { flex: 1; min-height: 0; display: flex; gap: 70px; margin-top: 40px; margin-bottom: 40px; }
+  .pairs { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+  .pair h3, .vol h3 { font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .two figure { margin: 0; }
+  .two img { width: 100%; height: 520px; object-fit: cover; object-position: top; border-radius: 12px; border: 2px solid var(--line); display: block; }
+  .two .me img { border: 3px solid var(--sage); }
+  .two figcaption { font-size: 18px; font-weight: 600; color: var(--gray); margin-top: 10px; }
+  .two .me figcaption { color: var(--sage); }
+  .vol { width: 330px; flex: none; display: flex; flex-direction: column; gap: 22px; border-left: 2px solid var(--line); padding-left: 50px; }
+  .vol .stat .n { font-size: 68px; }
+  .stat.sm .n { font-size: 62px; white-space: nowrap; color: var(--navy); }
+  .adv { flex: 1; display: flex; flex-direction: column; gap: 26px; }
+  .race { background: var(--off); border-radius: 18px; padding: 22px 30px 26px; }
+  .race h4, .flow h4 { font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray); }
+  .axis { position: relative; height: 26px; margin: 10px 0 4px 120px; margin-right: 0; font-size: 15px; color: var(--mute); }
+  .axis span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+  .axis span:last-child { transform: translateX(-100%); }
+  .lane2 { display: grid; grid-template-columns: 110px 1fr; gap: 10px; align-items: center; margin-top: 12px; }
+  .lane2 > b { font-size: 21px; }
+  .lane2 > span { grid-column: 2; font-size: 17px; color: var(--gray); margin-top: 2px; } .lane2 strong { color: var(--sage); }
+  #library .srcs { margin-top: 34px; } #library .prob { margin-top: 36px; } #library .prob .card { padding: 34px 50px 40px; } #library .prob b { margin-top: 14px; }
+  .cost { margin-top: 36px; } .cost .ag + * , .cost .old strong { color: var(--navy); } .cost .lane2 { grid-template-columns: 230px 1fr; } .cost .lane2 > span { grid-column: 2; font-size: 21px; color: var(--gray); }
+  .track { position: relative; height: 26px; background: #fff; border-radius: 6px; }
+  .track i { position: absolute; top: 0; bottom: 0; border-radius: 6px; }
+  .track .ag { background: var(--mute); } .track .ag2 { background: repeating-linear-gradient(45deg, var(--mute) 0 6px, transparent 6px 12px); border-radius: 0 6px 6px 0; }
+  .track .me { background: var(--sage); min-width: 12px; }
+  .track em { position: absolute; top: 50%; transform: translateY(-50%); font-style: normal; font-size: 13px; font-weight: 700; color: #fff; padding-left: 8px; white-space: nowrap; }
+  .track em:not(:first-of-type) { border-left: 2px solid #fff; }
+  .track em.on { color: var(--navy); background: #fff; border: 2px solid var(--mute); border-radius: 5px; padding: 1px 7px; margin-left: 6px; }
+  .flow { flex: 1; display: flex; gap: 46px; align-items: center; padding: 0 10px; }
+  .phone { width: 230px; flex: none; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .scr { width: 230px; height: 330px; border-radius: 30px; border: 8px solid var(--navy); background: linear-gradient(160deg, #0B1F5C, #3D7A6A); color: #fff; padding: 22px 18px; display: flex; flex-direction: column; gap: 14px; position: relative; }
+  .scr small { font-size: 12px; opacity: .8; } .scr p { font-size: 23px; font-weight: 800; line-height: 1.15; margin-top: 30px; }
+  .scr .route { font-size: 14px; font-weight: 700; letter-spacing: .08em; color: var(--yellow); }
+  .scr .cta { margin-top: auto; background: #fff; color: var(--navy); font-size: 14px; font-weight: 700; text-align: center; border-radius: 8px; padding: 8px; }
+  .emo { display: flex; gap: 10px; } .emo span { width: 48px; height: 48px; border-radius: 50%; background: #fff; border: 2px solid var(--line); display: grid; place-items: center; font-size: 25px; box-shadow: 0 4px 10px -6px rgba(0,0,0,.3); }
+  .emo span:first-child { border-color: var(--sage); transform: scale(1.12); }
+  .howto { list-style: none; display: flex; flex-direction: column; gap: 22px; counter-reset: h; }
+  .howto li { counter-increment: h; position: relative; padding-left: 56px; font-size: 19px; color: var(--gray); line-height: 1.4; }
+  .howto li::before { content: counter(h); position: absolute; left: 0; top: 0; width: 38px; height: 38px; border-radius: 50%; background: var(--sage); color: #fff; font-weight: 800; display: grid; place-items: center; }
+  .howto b { display: block; color: var(--navy); font-size: 22px; margin-bottom: 2px; }
+  .ba { margin-top: 14px; }
+  .ba .bah, .ba .r { display: grid; grid-template-columns: 640px 1fr 120px; gap: 40px; align-items: center; }
+  .ba .bah { padding-bottom: 12px; } .ba .bah > span:last-child { text-align: right; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); font-weight: 600; }
+  .ba .r { border-top: 2px solid var(--line); padding: 9px 0; }
+  .ba .nm { font-size: 24px; font-weight: 700; } .ba .nm small { display: block; font-size: 16.5px; font-weight: 500; color: var(--gray); margin-top: 4px; line-height: 1.35; }
+  .ba .bars { display: flex; flex-direction: column; gap: 4px; }
+  .ba .b { display: flex; align-items: center; gap: 12px; height: 23px; }
+  .ba .b i { display: block; height: 100%; border-radius: 0 4px 4px 0; }
+  .ba .bef { background: var(--mute); } .ba .aft { background: var(--sage); min-width: 4px; }
+  .ba .b em { font-style: normal; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--navy); white-space: nowrap; }
+  .ba .g { color: var(--sage); }
+  .ba .lv { font-size: 36px; font-weight: 800; color: var(--sage); text-align: right; font-variant-numeric: tabular-nums; }
+  .ba .tot { border-top: 2px solid var(--navy); padding-top: 14px; font-size: 24px; color: var(--navy); }
+  .sc { flex: 1; display: flex; flex-direction: column; gap: 22px; }
+  .scb { flex: 1; padding: 22px 28px 10px; display: flex; flex-direction: column; gap: 14px; }
+  .fun { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; }
+  .fun span { background: var(--sage-soft); color: var(--sage); border-radius: 999px; padding: 6px 13px; } .fun b { color: var(--mute); }
+  .curve { width: 100%; flex: 1; }
+  .scs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .scs div { background: var(--off); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; }
+  .scs b { font-size: 19px; } .scs span { font-size: 15.5px; color: var(--gray); line-height: 1.35; flex: 1; }
+  .scs em { font-style: normal; font-size: 13px; font-weight: 700; color: var(--sage); }
+  .ci { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+  .strip { background: var(--sage); border-radius: 18px; padding: 18px 22px 20px; }
+  .strip h4 { font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: #fff; margin-bottom: 14px; }
+  .strip .ads { display: flex; gap: 14px; align-items: flex-start; justify-content: space-between; height: 270px; }
+  .strip .ads > img { height: 270px; width: auto; border-radius: 8px; box-shadow: 0 6px 16px -8px rgba(0,0,0,.5); }
+  .strip figure { margin: 0; flex: 1; min-width: 0; background: #fff; border-radius: 8px; height: 270px; display: flex; flex-direction: column; overflow: hidden; }
+  .strip figure img { width: 100%; flex: 1; object-fit: contain; min-height: 0; } .strip figcaption { font-size: 14px; color: var(--gray); padding: 6px 10px; }
+  .ci .intel { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .ci .ic { padding: 16px 18px; } .ci .ic .n { font-size: 36px; } .ci .ic b { font-size: 19px; margin-top: 6px; } .ci .ic span { font-size: 15.5px; }
+  .adv2 { flex: 1; display: flex; gap: 46px; align-items: center; }
+  .phone2 { flex: none; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .phone2 .emo span { width: 44px; height: 44px; font-size: 22px; }
+  .scr2 { width: 290px; height: 629px; border-radius: 48px; border: 9px solid #1C1F24; outline: 2px solid #3A3F47; overflow: hidden; position: relative; box-shadow: 0 30px 60px -24px rgba(0,0,0,.45); }
+  .scr2::before { content: ""; position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 88px; height: 26px; border-radius: 14px; background: #000; z-index: 2; }
+  .scr2 { background: #000; display: flex; align-items: center; }
+  .scr2 img { width: 100%; height: auto; display: block; }
+  .scr2 .sp { position: absolute; top: 48px; left: 18px; font-size: 12px; color: #fff; opacity: .85; }
+  .adv2 .side { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+  .adv2 .howto { gap: 16px; } .adv2 .howto li { font-size: 18px; }
+</style>
+</head>
+<body>
+
+<section class="slide cover" id="top">
+  <div class="txt">
+    <div class="name">Louis<br>Belpaire</div>
+    <div class="role">Director, Marketing Transformation &amp; Performance <span>· WorldStrides</span></div>
+    <ol class="toc">
+      <li><a href="#work"><i>01</i>Work history</a></li>
+      <li><a href="#skills"><i>02</i>Areas of expertise</a></li>
+      <li><a href="#time"><i>03</i>Time savings</a><span class="sub"><a href="#time">Before and after</a> · <a href="#creative">Creative output</a></span></li>
+      <li><a href="#productivity"><i>04</i>Productivity tracking</a></li>
+      <li><a href="#appendix"><i>+</i>Appendix: case studies</a><span class="sub"><a href="#hub">Marketing Operations</a> · <a href="#scorecards">Reporting</a> · <a href="#systems">Marketing Stack</a> · <a href="#intel">Creative</a></span></li>
+    </ol>
+    <div class="meta">
+      <a href="mailto:louis.belpaire@gmail.com"><img src="assets/icons/social-envelope.svg" alt="">louis.belpaire@gmail.com</a>
+      <a href="https://www.linkedin.com/in/belpaire/"><img src="assets/icons/social-linkedin.svg" alt="">linkedin.com/in/belpaire</a>
+      <a href="https://louisbel.github.io/"><img src="assets/icons/social-globe.svg" alt="">louisbel.github.io</a>
+      <a href="https://github.com/louisbel"><img src="assets/icons/social-github.svg" alt="">github.com/louisbel</a>
+      <a href="https://louisbel.github.io/r/ad07f9e6154a/"><img src="assets/icons/social-link.svg" alt="">Web version of this deck</a>
+      <span>U.S. &amp; French citizen · DC area</span>
+    </div>
+  </div>
+  <div class="photo"></div>
+</section>
+
+<section class="slide" id="work">
+  <span class="chip">01 · Work history</span>
+  <h1>15 years in performance marketing</h1>
+  <div class="tl">
+    <div class="seg">
+      <div class="yr">2011 – 2012 · Berlin</div>
+      <div class="co"><img src="assets/logo-groupon.svg" alt="Groupon" style="height:62px"></div>
+      <div class="ro"><b>Online Marketing Analyst</b></div>
+      <ul class="kpi">
+        <li><b>#1</b> highest daily Google Ads budget in the world at the time</li>
+        <li>Funded 1 year of study abroad with this job</li>
+        <li>Learned how to structure paid media for scale in a high-performance environment</li>
+      </ul>
+    </div>
+    <div class="seg">
+      <div class="yr">2013 – 2023 · Arlington, VA</div>
+      <div class="co"><img src="assets/logo-silverback.png" alt="Silverback Strategies" style="height:92px"></div>
+      <div class="ro"><b>Account management → Agency Operations (COO)</b></div>
+      <ul class="kpi">
+        <li>Grew a <b>5</b>-person boutique search agency into a <b>75</b>-person, nationally recognized performance marketing agency</li>
+        <li><b>25%</b> agency growth per year during my tenure</li>
+        <li><b>$25M</b> a year in paid media on Google, Meta, TikTok, LinkedIn and Bing</li>
+        <li><b>50</b> client accounts in education, healthcare, SaaS, retail and fintech</li>
+      </ul>
+    </div>
+    <div class="seg now">
+      <div class="yr">2024 – now · DC area</div>
+      <div class="co"><img src="assets/logo-worldstrides.png" alt="WorldStrides" style="height:48px;margin-bottom:6px"></div>
+      <div class="ro"><b>Senior Digital Marketing Manager → Director, Marketing Transformation &amp; Performance</b> (Aug 2026)</div>
+      <ul class="kpi">
+        <li><b>5</b> direct reports</li>
+        <li><b>+15%</b> enrollments on <b>23%</b> less paid media budget in year 1</li>
+        <li>Deployed <b>40+</b> AI workflows into marketing ops in Q3 2026</li>
+        <li>Led an AI session in front of <b>600</b> colleagues</li>
+        <li>Praise from multiple C-suite leaders; exceeded expectations in performance reviews</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><a href="#top">Louis Belpaire</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="skills">
+  <span class="chip">02 · Areas of expertise</span>
+  <h1>Areas of expertise</h1>
+  <div class="skills">
+    <div><b>AI Strategy</b><span>Roadmaps that put AI where it pays off in marketing</span></div>
+    <div><b>Agentic Automation</b><span>Custom Claude Code and Claude API tools for reporting, research and creative workflows</span></div>
+    <div><b>Team AI Upskilling</b><span>Getting marketing teams productive with AI in their day-to-day work</span></div>
+    <div><b>Performance Marketing</b><span>Paid search, social and programmatic, run and tested at scale</span></div>
+    <div><b>Creative Intelligence</b><span>Auditing and scaling ad creative with data, from concept to performance</span></div>
+    <div><b>Measurement &amp; MMM</b><span>Marketing mix modeling, attribution and first-party data strategy</span></div>
+    <div><b>Digital Transformation Goal Setting</b><span>Setting transformation goals and KPIs, and tracking the team against them</span></div>
+    <div><b>Stack Alignment &amp; Agentification</b><span>Aligning the martech stack, then putting AI agents to work across it</span></div>
+    <div><b>Go-to-Market Strategy</b><span>Channel strategy and launch planning across B2B, B2C and education</span></div>
+  </div>
+  <div class="stack"><b>Marketing stack</b>
+    <span><img src="assets/icons/stack-google-ads.svg" alt="">Google Ads</span><span><img src="assets/icons/stack-meta-ads.svg" alt="">Meta Ads</span><span><img src="assets/icons/stack-linkedin-ads.svg" alt="">LinkedIn Ads</span><span><img src="assets/icons/stack-tiktok-ads.svg" alt="">TikTok Ads</span><span><img src="assets/icons/stack-google-analytics.svg" alt="">Google Analytics</span><span><img src="assets/icons/stack-google-tag-manager.svg" alt="">Tag Manager</span><span><img src="assets/icons/stack-looker-studio.svg" alt="">Looker Studio</span><span><img src="assets/icons/stack-power-bi.svg" alt="">Power BI</span><span><img src="assets/icons/stack-supermetrics.svg" alt="">Supermetrics</span><span><img src="assets/icons/stack-salesforce.svg" alt="">Salesforce</span><span><img src="assets/icons/stack-hubspot.svg" alt="">HubSpot</span><span><img src="assets/icons/stack-microsoft-dynamics.svg" alt="">Dynamics</span><span><img src="assets/icons/stack-zapier.svg" alt="">Zapier</span><span><img src="assets/icons/stack-claude-code.svg" alt="">Claude Code</span><span><img src="assets/icons/stack-python.svg" alt="">Python</span>
+  </div>
+  <div class="foot"><a href="#top">From louisbel.github.io/about</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="time">
+  <span class="chip">03 · Time savings</span>
+  <h1>Before and after</h1>
+  <div class="ba">
+    <div class="bah"><span></span><div class="legend"><span><i style="background:var(--mute)"></i>Before: hours by hand</span><span><i style="background:var(--sage)"></i>After: hours Claude ran</span></div><span>Faster</span></div>
+    <div id="act"></div>
+  </div>
+  <div class="foot"><a href="#top">760 Claude Code tasks, Sep 22 – Oct 31, 2026, rated by the task rater agent and grouped by keyword · decks, comms and admin not shown · leverage = hand-work hours ÷ hours Claude ran · my review time not subtracted</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="creative">
+  <span class="chip">03 · Time savings · Creative</span>
+  <h1>Creative output</h1>
+  <div class="cmp">
+    <div class="pairs">
+      <div class="pair"><h3>Oxbridge landing page</h3><div class="two"><figure><img src="assets/lp-oap-agency.jpg" alt=""><figcaption>Agency design</figcaption></figure><figure class="me"><img src="assets/lp-oap-mine.jpg" alt=""><figcaption>Mine, built with Claude</figcaption></figure></div></div>
+      <div class="pair"><h3>Honors Performance Series page</h3><div class="two"><figure><img src="assets/lp-hps-agency.jpg" alt=""><figcaption>Agency page</figcaption></figure><figure class="me"><img src="assets/lp-hps-mine.jpg" alt=""><figcaption>Mine, built with Claude</figcaption></figure></div></div>
+    </div>
+    <div class="vol"><h3>FY27 launch output</h3>
+      <div class="stat"><div class="n">23</div><div class="l">landing pages</div></div>
+      <div class="stat"><div class="n">61</div><div class="l">nurture emails</div></div>
+      <div class="stat"><div class="n">15</div><div class="l">program brochures</div></div>
+    </div>
+  </div>
+  <p class="est" style="margin:24px 0 44px;font-size:26px">Overwhelming internal consensus that the product is better, faster and cheaper, which would be impossible without AI systems.</p>
+  <div class="foot"><a href="#top">FY27 launch board, Nov 2026 · page tops shown, photos blurred: they show students</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="productivity">
+  <span class="chip">04 · Productivity tracking</span>
+  <h1>September to date</h1>
+  <div class="body" style="gap:70px;margin-top:34px">
+    <div style="flex:1.65;display:flex;flex-direction:column">
+      <div class="legend"><span><i style="background:var(--mute)"></i>Hours I worked</span><span><i style="background:var(--sage)"></i>Claude's output, in hours it would take by hand</span></div>
+      <svg id="xf" viewBox="0 0 1000 400" style="width:100%;flex:1"></svg>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:30px">
+      <div style="display:flex;gap:56px">
+        <div class="stat sm"><div class="n" id="xf-w"></div><div class="l">hours I worked</div></div>
+        <div class="stat sm"><div class="n" id="xf-o"></div><div class="l">Claude's output, in hand-work hours</div></div>
+      </div>
+      <div style="display:flex;gap:56px">
+        <div class="stat"><div class="n" id="xf-x"></div><div class="l">output per hour worked</div></div>
+        <div class="stat"><div class="n" id="xf-ai"></div><div class="l">per hour Claude ran</div></div>
+      </div>
+      <div class="est">I estimate my productivity at about <b>4×</b> that of a contributor working without AI.</div>
+    </div>
+  </div>
+  <div class="agents">
+    <div class="card"><b>Agent 1 · Hours tracker</b>Every 30 seconds it logs keyboard and mouse activity and the app in front, adds work-browser visits and Teams calls, and gives each minute one state: meeting, hands-on, reading or personal. Only work minutes count.</div>
+    <div class="card"><b>Agent 2 · Task rater</b>Every Tuesday a read-only Claude agent scores each Claude Code task from 1 to 5 for tedium and estimates how long it would take by hand, against fixed anchors. Conservative: my review time is not subtracted.</div>
+  </div>
+  <div class="foot"><a href="#top">Work weeks Sep 1 – Nov 1, 2026</a><span class="pg"></span></div>
+</section>
+
+<section class="slide cover appx" id="appendix">
+  <div class="txt">
+    <div class="name" style="font-size:110px">Appendix</div>
+    <div class="role">Case studies</div>
+    <div class="grp">
+      <div><h4>Marketing Operations</h4><ol class="toc"><li><a href="#hub"><i>A1</i>Marketing hub</a></li><li><a href="#library"><i>A2</i>Creative Library</a></li><li><a href="#launcher"><i>A3</i>Campaign launcher</a></li><li><a href="#newsletter"><i>A4</i>Weekly update</a></li></ol></div>
+      <div><h4>Reporting</h4><ol class="toc"><li><a href="#scorecards"><i>A5</i>Scorecards</a></li></ol></div>
+      <div><h4>Marketing Stack</h4><ol class="toc"><li><a href="#systems"><i>A6</i>Systems map</a></li></ol></div>
+      <div><h4>Creative</h4><ol class="toc"><li><a href="#intel"><i>A7</i>Competitive intelligence</a></li><li><a href="#adstudio"><i>A8</i>Ad Studio</a></li></ol></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="hub" style="padding-bottom:0">
+  <span class="chip">Marketing Operations · Marketing hub</span>
+  <h1>The marketing hub</h1>
+  <div class="mock">
+    <div class="bar"><i></i><i></i><i></i><span>marketing-hub · password protected</span></div>
+    <div class="mbody">
+      <nav class="rail">
+        <b>Sections</b>
+        <span class="on">Performance &amp; planning</span><span>Channels</span><span>Website</span><span>Competitors &amp; market</span><span>Creative &amp; brand</span><span>Systems &amp; data quality</span><span>People &amp; enablement</span>
+      </nav>
+      <div class="main">
+        <div class="mhead">
+          <div><div class="mt">Marketing Hub</div><div class="ms">Every report, tracker and tool the team uses, in one place</div></div>
+          <div class="usage"><span><b>41</b> people</span><span><b>1,298</b> views</span><span><b>49</b> tools</span><span>in use since <b>Oct 5</b></span></div>
+        </div>
+        <div class="groups">
+          <div class="gcol"><h4>Data &amp; reporting<span>23</span></h4><div class="tile dyn"><em>Daily</em><b>Program Scorecard</b><small>Every program vs last year, from mail to enrollment</small></div><div class="tile"><b>Launch Board</b><small>18 programs: pages, emails, CRM tests, mail drops</small></div><div class="tile dyn"><em>Daily</em><b>Mail to Site Checker</b><small>Site visits driven by each direct mail drop</small></div><div class="tile dyn"><em>Weekly</em><b>Competitor Ad Report</b><small>New competitor creative each week</small></div></div>
+          <div class="gcol"><h4>Measurement &amp; auditing<span>14</span></h4><div class="tile dyn"><em>Weekly</em><b>Site Accuracy Monitor</b><small>Dates, prices and locations vs the catalog</small></div><div class="tile"><b>Lead-Flow Tests</b><small>Every form tested end to end into the CRM</small></div><div class="tile dyn"><em>Daily</em><b>Event Tracking</b><small>Server-side conversions and ad audiences</small></div><div class="tile"><b>Vanity URL Checker</b><small>Print URLs verified against their tracking</small></div></div>
+          <div class="gcol"><h4>Creative generation<span>9</span></h4><div class="tile dyn"><em>30 min</em><b>Creative Library</b><small>27,000 photos and videos, searchable</small></div><div class="tile"><b>Ad Studio</b><small>Meta static and video ads, built in rounds</small></div><div class="tile"><b>Brochure Builder</b><small>Print-ready program PDFs from one template</small></div><div class="tile"><b>Page Concepts</b><small>Landing pages and site sections, built in a sandbox</small></div></div>
+          <div class="gcol"><h4>Team enablement<span>3</span></h4><div class="tile"><b>Prompting 101</b><small>AI training for the wider team</small></div><div class="tile"><b>Analyst Interview Quiz</b><small>12 questions for marketing data hires</small></div><div class="tile"><b>Personal Branding</b><small>Webinar for the team</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="chip">Marketing Operations · Marketing hub</span>
+  <h1>How the hub works</h1>
+  <div class="body" style="margin-top:20px">
+    <div class="cyc" id="cyc">
+      <svg viewBox="0 0 1700 700" preserveAspectRatio="none"></svg>
+      <div class="core"><div class="big">49</div><div class="lbl">tools in 7 sections</div></div>
+      <div class="node"><h3><i>1</i>Data sources</h3>
+        <div class="lg"><img src="assets/icons/meta.svg" alt=""><img src="assets/icons/googleads.svg" alt=""><img src="assets/icons/googleanalytics.svg" alt=""><img src="assets/icons/hubspot.svg" alt=""><img src="assets/icons/stack-microsoft-dynamics.svg" alt=""><img src="assets/icons/wordpress.svg" alt=""></div>
+        <p>Ad platforms, GA4, HubSpot, CRM exports, the websites</p><p class="add">+ competitor scrapers: ads, sites, nurture emails</p></div>
+      <div class="node"><h3><i>2</i>Pipeline</h3>
+        <div class="lg"><img src="assets/icons/claude.svg" alt=""><img src="assets/icons/python.svg" alt=""><img src="assets/icons/githubactions.svg" alt=""><img src="assets/icons/apple.svg" alt=""><img src="assets/icons/netlify.svg" alt=""></div>
+        <p>Scheduled jobs written with Claude Code. A run fails loudly if its data is stale.</p></div>
+      <div class="node"><h3><i>3</i>Insights</h3>
+        <div class="lg"><img src="assets/icons/stack-power-bi.svg" alt=""><img src="assets/icons/viz-bar.svg" alt=""><img src="assets/icons/viz-line.svg" alt=""><img src="assets/icons/viz-donut.svg" alt=""></div>
+        <p>Hub reports and Power BI: campaign scorecard, site traffic, competitor ads, blog reads. Daily or weekly.</p></div>
+      <div class="node"><h3><i>4</i>Workflows</h3>
+        <p>Launch board, lead-flow tests, brochure builder, site and URL checks</p></div>
+      <div class="node"><h3><i>5</i>Experimentation</h3>
+        <p>Landing-page versions, ad copy tests, new channels like ChatGPT Ads. Results feed back in as data.</p></div>
+    </div>
+  </div>
+  <div class="foot"><a href="#top">Envision Hub, WorldStrides · Nov 2026</a><span class="pg"></span></div>
+</section>
+
+<section class="slide">
+  <span class="chip">Marketing Operations · Marketing hub</span>
+  <h1>Who uses the hub</h1>
+  <div class="body" style="gap:80px">
+    <div style="flex:1.7;display:flex;flex-direction:column">
+      <div class="legend"><span><i style="background:var(--sage)"></i>Page views per day</span></div>
+      <svg id="traffic" viewBox="0 0 1000 470" style="width:100%;flex:1;overflow:visible"></svg>
+    </div>
+    <div style="flex:1">
+      <div style="display:flex;gap:60px;margin-bottom:34px">
+        <div class="stat"><div class="n">41</div><div class="l">colleagues</div></div>
+        <div class="stat"><div class="n">1,298</div><div class="l">page views</div></div>
+        <div class="stat"><div class="n">3,426</div><div class="l">in-tool actions</div></div>
+      </div>
+      <ul class="rank" id="top5"></ul>
+    </div>
+  </div>
+  <div class="foot"><a href="#top">GA4 on the hub, 5 Oct – 4 Nov 2026 (tracking began 5 Oct) · right: views and people per tool</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="library">
+  <span class="chip">Marketing Operations · Creative Library</span>
+  <h1>The problem</h1>
+  <div class="srcs"><b>Where assets lived</b><span>OneDrive creative archive</span><span>Team Google Drives</span><span>Agency export zips</span><span>Separate brand archives</span><span>Personal folders</span></div>
+  <div class="prob">
+    <div class="card"><i>1</i><b>No central place to find assets</b><span>Marketing, sales and agency partners had no single place to search. Finding the right shot meant asking around and digging through folders.</span></div>
+    <div class="card"><i>2</i><b>Quality varied folder to folder</b><span>Strong photos sat next to blurry, duplicate and off-brand ones, with no way to tell them apart without opening each file.</span></div>
+  </div>
+  <div class="race cost"><h4>Yearly cost for 100 users</h4>
+    <div class="lane2"><b>Previous solution</b><div class="track"><i class="ag" style="left:0;width:100%"></i></div><span class="old">Dropbox Business Standard: $15 a user a month = <strong>$18,000 a year</strong></span></div>
+    <div class="lane2"><b>Mine</b><div class="track"><i class="me" style="left:0;width:.6%"></i></div><span><strong>$9 a month = $108 a year</strong>, about $17,900 saved</span></div>
+  </div>
+  <div class="foot"><a href="#top">Envision Creative Library, built Sep 2026 · Dropbox list price, Business Standard billed yearly, Nov 2026</a><span class="pg"></span></div>
+</section>
+
+<section class="slide">
+  <span class="chip">Marketing Operations · Creative Library</span>
+  <h1>What I built</h1>
+  <div class="body" style="gap:56px;margin-top:40px;margin-bottom:44px">
+    <div class="shot"><div class="bar"><i></i><i></i><i></i><span>library.envisionexperience · Cloudflare</span></div><img src="assets/library.jpg" alt="Creative library"></div>
+    <div class="stk">
+      <p>27,000 photos and videos in one gated library, searchable in plain language. Every photo is scored for quality and near-duplicates are folded.</p>
+      <h3>On the Mac</h3>
+      <div class="row"><img src="assets/icons/python.svg" alt=""><div>Python ingest<small>every 10 min, metadata and GPS stripped</small></div></div>
+      <div class="row"><img src="assets/icons/apple.svg" alt=""><div>Apple Vision tags<small>on-device, photos of minors never leave the Mac</small></div></div>
+      <div class="row"><span class="gen">AI</span><div>CLIP search · Whisper transcripts<small>on-device models, similar shots folded</small></div></div>
+      <div class="row"><img src="assets/icons/ollama.svg" alt=""><div>Ollama vision model<small>after-hours tagging</small></div></div>
+      <h3>Joined</h3>
+      <div class="row"><img src="assets/icons/meta.svg" alt=""><div>Meta Ads API<small>"Used in ads" filter, "Most ad spend" sort</small></div></div>
+      <h3>Served</h3>
+      <div class="row"><img src="assets/icons/cloudflare.svg" alt=""><div>Cloudflare Worker · R2 · D1<small>password-gated, refreshed every 30 min</small></div></div>
+      <div class="row"><img src="assets/icons/claude.svg" alt=""><div>Built with Claude Code</div></div>
+    </div>
+  </div>
+  <div class="foot"><a href="#top">Envision Creative Library, built Sep 2026 · photos blurred here: they show students</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="launcher">
+  <span class="chip">Marketing Operations · Campaign launcher</span>
+  <h1>Campaign launcher</h1>
+  <div class="case">
+    <div class="story">
+      <div><h3>Problem</h3><p>Direct mail lived in a 450-campaign calendar spreadsheet, digital launches in the agency’s plan, and page, email and CRM readiness in people’s heads. Clashes showed up after launch.</p></div>
+      <div><h3>What I did</h3><p>Built one launch board that merges the mail calendar, the digital plan and each program’s build status: landing pages, nurture emails, CRM tests, brochures. It rebuilds whenever the calendar file changes.</p></div>
+      <div class="res"><h3>Result</h3><p>18 programs and every mail drop on one screen. The most-used tool on the hub: 227 views from 19 people in its first month.</p></div>
+    </div>
+    <div class="vis"><div class="board"><div class="bar"><i></i><i></i><i></i><span>Hub · Campaign launch board</span></div>
+      <div class="lb"><div class="lbh"><span>Program</span><div class="months" id="lb-m"></div><span>Brochure</span></div><div id="lb"></div></div>
+      <div class="lg2"><span><i class="dia"></i>digital launch</span><span><i class="bub"></i>mail drop, sized by pieces</span></div>
+    </div></div>
+  </div>
+  <div class="foot"><a href="#top">Appendix · WorldStrides FY27 launch, Oct 2026 – Feb 2027 · 8 of 18 programs shown</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="newsletter">
+  <span class="chip">Marketing Operations · Weekly update</span>
+  <h1>Weekly update</h1>
+  <div class="case">
+    <div class="story">
+      <div><h3>Problem</h3><p>Wins, fixes and new tools stayed inside the team that made them. Sales, partners and leadership heard about them late, or not at all.</p></div>
+      <div><h3>What I did</h3><p>Every Friday at 6:30 a Claude agent collects the week’s changes from the workspace and my mailbox and drafts the email in Outlook. I edit and send it. Past issues live on the hub, with passwords stripped automatically.</p></div>
+      <div class="res"><h3>Result</h3><p>A weekly habit since late September: 6 issues so far, each one under five minutes of my editing.</p></div>
+    </div>
+    <div class="vis"><div class="mail"><div class="mh"><b>Weekly Update · Oct 19 – 23</b><span>To: Marketing team · Fri 6:30 AM draft, sent after review</span></div>
+      <div class="mb">
+        <p class="intro">Good morning, grab your coffee and hop on the marketing news train! Last week was all about follow-through on direct mail.</p>
+        <div class="callout"><h5>🙌 Catch of the week</h5><p>A direct-mail QR code scanned on Android but not on iPhone. The piece was reprinted. Lesson for every piece: <b>test QR codes on iOS and Android</b> before sign-off.</p></div>
+        <h5>🔥 Hot from the press</h5><p>332 new summer program photos are in the Creative Library, with 60 brochure picks flagged. The agency is already using them for the next round of ads.</p>
+        <h5>📦 New tools &amp; builds</h5><p><u>Mail to Site Checker</u>: how much site traffic each mail drop drives, refreshed daily. First read: 132,854 tracked pieces → 1,458 sessions (<b>1.10%</b>).</p>
+        <h5>⚙️ Config &amp; systems</h5><p>All 128 Meta audiences now follow one naming convention, and a new nominator audience is ready for mentor targeting.</p>
+        <h5>👀 On the lookout for</h5><p>What counts as a “digital enroll”: any touch, first touch or last touch?</p>
+      </div></div></div>
+  </div>
+  <div class="foot"><a href="#top">Appendix · WorldStrides, Sep – Oct 2026 · excerpt shortened, names removed</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="scorecards">
+  <span class="chip">Reporting · Scorecards</span>
+  <h1>Scorecards</h1>
+  <div class="case">
+    <div class="story">
+      <div><h3>Problem</h3><p>Reporting meant pulling Power BI exports, HubSpot lists and ad-platform screens by hand. No one could see a program against last year at the same point in its cycle.</p></div>
+      <div><h3>What I did</h3><p>Built four scorecards that refresh themselves every morning from the Azure warehouse, GA4, HubSpot and the ad platforms. Each program lines up with last year from its first mail drop. If a source fails, the page keeps yesterday’s data and says so.</p></div>
+      <div class="res"><h3>Result</h3><p>Every program, from mail piece to enrollment, ready before the team logs in. No manual pulls for the weekly review.</p></div>
+    </div>
+    <div class="vis"><div class="sc">
+      <div class="board"><div class="bar"><i></i><i></i><i></i><span>Hub · Programs FY27 Scorecard</span></div>
+        <div class="scb">
+          <div class="fun"><span>Mailed</span><b>→</b><span>Leads</span><b>→</b><span>Opportunities</span><b>→</b><span>Registrations</span><b>→</b><span>Enrolled</span></div>
+          <svg viewBox="0 0 900 300" class="curve"><line x1="40" y1="260" x2="880" y2="260" stroke="#E5E7EB" stroke-width="2"/><line x1="40" y1="20" x2="40" y2="260" stroke="#E5E7EB" stroke-width="2"/>
+            <path d="M40,258 C200,250 300,215 420,175 S650,90 880,62" fill="none" stroke="#A3ABB5" stroke-width="4"/>
+            <path d="M40,258 C190,246 290,200 400,152 S520,112 600,96" fill="none" stroke="#3D7A6A" stroke-width="5"/>
+            <circle cx="600" cy="96" r="8" fill="#3D7A6A"/><text x="586" y="70" font-size="20" font-weight="700" fill="#3D7A6A" text-anchor="end">FY27 today</text>
+            <text x="760" y="50" font-size="20" fill="#6B7280">FY26</text>
+            <text x="460" y="292" font-size="18" fill="#6B7280" text-anchor="middle">days since the program's first mail drop</text></svg>
+        </div></div>
+      <div class="scs">
+        <div><b>Programs</b><span>Every program vs last year, mail to enrollment</span><em>Daily 5 AM</em></div>
+        <div><b>Direct mail</b><span>Each mail campaign vs the same list last year</span><em>Daily 5 AM</em></div>
+        <div><b>Honors Performance</b><span>Paid campaign across Meta, Google and HubSpot</span><em>Daily</em></div>
+        <div><b>Oxbridge</b><span>Spend, leads and cost per lead since launch</span><em>Daily</em></div>
+      </div>
+    </div></div>
+  </div>
+  <div class="foot"><a href="#top">Reporting · WorldStrides FY27, Oct 2026 · curve shape illustrative, real values left out</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="systems">
+  <span class="chip">Marketing Stack · Systems map</span>
+  <h1>Systems map</h1>
+  <div class="case">
+    <div class="story">
+      <div><h3>Problem</h3><p>Leads pass through ad platforms, three websites, HubSpot, Dynamics and an Azure warehouse, each owned by a different team. Nobody had the whole picture, so the same lead was counted differently in each report.</p></div>
+      <div><h3>What I did</h3><p>Interviewed stakeholders across marketing, sales and data, with AI drafting the questions and synthesizing the answers. Catalogued the warehouse read-only (3 databases, ~950 tables). Then generated the map as editable Mural widgets through Mural’s MCP.</p></div>
+      <div class="res"><h3>Result</h3><p>One shared map: 4 lanes, documented vs inferred flows, 3 open gaps. It is now the brief for moving the stack to Dynamics 365 Customer Insights – Journeys.</p></div>
+    </div>
+    <div class="vis"><div class="board"><div class="bar"><i></i><i></i><i></i><span>Mural · Journeys &amp; Flows</span></div>
+      <div class="lanes">
+        <div class="lane"><h4>1 · Acquisition</h4><div class="nd"><img src="assets/icons/meta.svg" alt=""><img src="assets/icons/googleads.svg" alt=""><span>Paid channels</span></div><div class="nd"><img src="assets/icons/viz-bar.svg" alt=""><span>Mail vendors &amp; lists</span><em class="gap">!</em></div></div>
+        <div class="lane"><h4>2 · Lead capture</h4><div class="nd"><img src="assets/icons/wordpress.svg" alt=""><img src="assets/icons/googleanalytics.svg" alt=""><span>Websites &amp; GA4</span></div><div class="nd"><img src="assets/icons/hubspot.svg" alt=""><span>HubSpot forms &amp; nurture</span><em class="gap">!</em></div></div>
+        <div class="lane"><h4>3 · Sales</h4><div class="nd"><img src="assets/icons/stack-microsoft-dynamics.svg" alt=""><span>Dynamics CRM</span></div><div class="nd az"><b>Az</b><span>Azure SQL warehouse</span></div></div>
+        <div class="lane"><h4>4 · Reporting</h4><div class="nd"><img src="assets/icons/stack-power-bi.svg" alt=""><span>Power BI</span></div><div class="nd"><img src="assets/icons/viz-line.svg" alt=""><span>Hub dashboards</span><em class="gap">!</em></div></div>
+      </div>
+      <div class="lg2"><span><i class="sol"></i>documented flow</span><span><i class="das"></i>inferred, to confirm</span><span><em class="gap">!</em>gap or risk</span></div>
+    </div></div>
+  </div>
+  <div class="foot"><a href="#top">Appendix · WorldStrides, Sep – Oct 2026 · systems simplified for this deck</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="intel">
+  <span class="chip">Creative · Competitive intelligence</span>
+  <h1>Competitive intelligence</h1>
+  <div class="case">
+    <div class="story">
+      <div><h3>Problem</h3><p>Competitor tracking was occasional screenshots. We could not say what rivals were running this week, how they nurture a parent, or what their landing pages promise.</p></div>
+      <div><h3>What I did</h3><p>Built scrapers and agents that collect it on a schedule: ads, nurture emails and landing pages, plus a swipe file. Claude summarizes each run into themes the team can act on.</p></div>
+      <div class="res"><h3>Result</h3><p>Rival creative and nurture sequences are now an input to our own: briefs, landing-page redesigns and the nurture rebuild start from them.</p></div>
+    </div>
+    <div class="vis"><div class="ci">
+      <div class="strip"><h4>Weekly ad monitor · four rivals’ live Meta ads, with themes and word clouds</h4>
+        <div class="ads"><img src="assets/comp-ad-1.jpg" alt=""><img src="assets/comp-ad-2.jpg" alt=""><img src="assets/comp-ad-3.jpg" alt=""><img src="assets/comp-ad-4.jpg" alt=""></div></div>
+      <div class="intel">
+      <div class="ic"><div class="n">11</div><b>Nurture intelligence</b><span>A test parent persona signs up to each rival; every email lands on a Day-0 timeline</span></div>
+      <div class="ic"><div class="n">14</div><b>Landing-page benchmark</b><span>Competitor pages captured on desktop and mobile, section by section</span></div>
+      <div class="ic"><div class="n">518</div><b>Email archive</b><span>A year of competitor emails, tagged by offer, timing and format</span></div>
+      <div class="ic"><div class="n">56 → 12</div><b>Ad swipe file</b><span>56 standout ads grouped into 12 creative patterns</span></div>
+      </div>
+    </div></div>
+  </div>
+  <div class="foot"><a href="#top">Creative · WorldStrides, FY26 – FY27 · competitor ads are public, from the Meta Ad Library</a><span class="pg"></span></div>
+</section>
+
+<section class="slide" id="adstudio">
+  <span class="chip">Creative · Ad Studio</span>
+  <h1>Ad Studio</h1>
+  <div class="case">
+    <div class="story">
+      <div><h3>Problem</h3><p>The agency’s first Meta batch took nine weeks from kickoff to a final brief: 18 ads, mostly statics. Team feedback on creative ran through email threads and calls.</p></div>
+      <div><h3>What I did</h3><p>Built an ad studio with Claude Code. It picks photos and clips from the Creative Library on the Mac, writes copy that matches the landing pages, and renders vertical videos in code. The team rates them in a swipe app.</p></div>
+      <div class="res"><h3>Result</h3><p>97 ads, 51 of them videos, in two days. The 18 strongest videos went to the team to rate on their phones.</p></div>
+    </div>
+    <div class="vis"><div class="adv2">
+      <div class="phone2"><div class="scr2"><img src="assets/ad-boarding-cambridge.jpg" alt="Boarding-pass ad, Cambridge"><span class="sp">Sponsored</span></div>
+        <div class="emo"><span>🔥</span><span>❤️</span><span>😐</span><span>💩</span></div></div>
+      <div class="side">
+      <div class="race"><h4>Time to first ads</h4>
+        <div class="lane2"><b>Agency</b><div class="track"><i class="ag" style="left:0;width:79.8%"></i><i class="ag2" style="left:79.8%;width:20.2%"></i></div><span>Aug 13 kickoff → Oct 15 brief for 18 ads, then production</span></div>
+        <div class="lane2"><b>Me</b><div class="track"><i class="me" style="left:96.2%;width:2.6%"></i></div><span><strong>2 days: 97 ads, 51 videos</strong></span></div>
+      </div>
+      <ol class="howto">
+        <li><b>Watch</b>Each video plays in a Reels mock on the reviewer’s phone.</li>
+        <li><b>Swipe or tap</b>One emoji per ad: 🔥 ❤️ 😐 💩.</li>
+        <li><b>Rank</b>Ratings land in one place; the next round starts from the favorites.</li>
+      </ol>
+      </div>
+    </div></div>
+  </div>
+  <div class="foot"><a href="#top">Creative · Oxbridge Meta ads, Oct 2026 · agency dates from its shared deliverables · ad shown: boarding pass, Cambridge (no people)</a><span class="pg"></span></div>
+</section>
+
+<script>
+const D = {"title": "Director, Marketing Transformation & Performance", "title_since": "2026-08", "hub": {"tools": 49, "sections": 7, "since": "2026-10-05", "until": "2026-11-04", "users": 41, "views": 1298, "events": 3426, "daily": [["10-05", 9, 22], ["10-06", 6, 52], ["10-07", 4, 5], ["10-08", 6, 10], ["10-09", 1, 2], ["10-10", 0, 0], ["10-11", 2, 6], ["10-12", 5, 20], ["10-13", 6, 30], ["10-14", 8, 56], ["10-15", 1, 17], ["10-16", 10, 76], ["10-17", 1, 23], ["10-18", 2, 47], ["10-19", 13, 75], ["10-20", 5, 40], ["10-21", 7, 49], ["10-22", 6, 66], ["10-23", 6, 56], ["10-24", 0, 0], ["10-25", 0, 0], ["10-26", 8, 48], ["10-27", 6, 56], ["10-28", 6, 43], ["10-29", 5, 42], ["10-30", 9, 36], ["10-31", 1, 6], ["11-01", 1, 18], ["11-02", 11, 104], ["11-03", 14, 185], ["11-04", 10, 108]], "top": [["FY27 Launch Board", 366, 22], ["Oxbridge Scorecard", 79, 11], ["Site Accuracy Monitor", 79, 12], ["Ad Studio", 63, 9], ["Program Scorecard", 39, 5]]}, "pacman": {"rows": [["Downloadables", "Brochures and lead magnets", 100], ["Landing pages & modules", "Bespoke per program", 100], ["Form fields & compliance", "Mapped, audited and tested by API", 100], ["Campaign reporting", "Live scorecards, refreshed daily", 100], ["Web development", "WordPress backend via the WP Engine API", 90], ["Marketing ops project management", "The FY27 launch board", 50], ["Email workflow configuration", "HubSpot emails via the API", 50], ["Copy & UX strategy", "Human-led", 20]]}, "xfactor": {"weeks": [["Sep 1", 23.2, 18], ["Sep 7", 29.0, 142], ["Sep 14", 39.7, 198], ["Sep 21", 46.9, 141.1], ["Sep 28", 58.7, 83.4], ["Oct 5", 38.8, 71.1], ["Oct 12", 61.9, 99.2], ["Oct 19", 40.2, 123.4], ["Oct 26", 57.1, 284.0]], "worked": 395.5, "output": 1160, "ai_hours": 55.6, "x": 3.9, "per_ai_hour": 21, "by_tedium": [["Trivial", 7.2], ["Light", 14.9], ["Moderate", 19.8], ["Tedious", 26.8]]}, "library": {"photos": 21830, "videos": 5254}, "fy25": {"leads": 63, "enrollments": 15, "budget": -23}, "activities": {"tasks": 389, "hand_h": 593, "rows": [["Creative", "Landing pages, brochures, Meta static and video ads", 81, 152, 22.3, "Meta ad set, 16 statics in 3 sizes + 4 videos: ~12 h by hand, Claude ran 17 min"], ["Uptime & accuracy monitoring", "Site accuracy scans, form tests, redirects, audits", 92, 133, 15.9, "Weekly site accuracy scan, 40 pages: ~12 h by hand, Claude ran 16 min"], ["Marketing automation", "Lead nurture, HubSpot emails and workflow builds", 81, 108, 24.2, "21 HubSpot nurture emails: ~10 h by hand, Claude ran 13 min"], ["System integration", "APIs, pipelines and data syncs", 44, 75, 24.2, "GA4 pull and calendar parse into a new hub tool: ~8 h by hand, Claude ran 7 min"], ["Reporting & scorecards", "Scorecards, dashboards and recurring reports", 35, 63, 25.4, "Cohort-to-enrollment view on a live scorecard: ~6 h by hand, Claude ran 18 min"], ["Measurement deployment", "Tagging, GA4 events, pixels, server-to-server, offline conversions", 19, 39, 33.8, "Offline-conversion file, 4,161 leads hashed: ~5 h by hand, Claude ran 9 min"], ["Website improvement & UX", "Page sections, layouts and site fixes", 37, 23, 12.3, "Webinar section with a live countdown: ~4 h by hand, Claude ran 11 min"]]}, "launcher": {"rows": [["Oxbridge Academic", "2026-10-19", [["2026-10-23", 22], ["2026-10-30", 19], ["2026-11-13", 11], ["2027-01-01", 15], ["2027-02-12", 2]], "done"], ["Middle School STEM", "2026-11-02", [["2026-10-16", 18], ["2026-10-23", 58], ["2026-11-20", 60], ["2026-12-04", 40], ["2027-01-01", 30], ["2027-02-05", 78], ["2027-02-26", 7]], "done"], ["Junior Young Leaders", "2026-11-03", [["2026-10-16", 33], ["2026-10-23", 110], ["2026-11-13", 103], ["2027-01-22", 37], ["2027-02-05", 127], ["2027-02-26", 18]], "prog"], ["Pathways to STEM", "2026-11-13", [["2026-10-23", 23], ["2026-11-20", 133], ["2026-11-25", 22], ["2026-12-04", 34], ["2027-01-22", 28], ["2027-02-05", 108]], "prog"], ["Engineering", "2026-12-01", [["2026-10-23", 16], ["2026-10-30", 24], ["2026-11-06", 11], ["2026-12-04", 22], ["2027-01-01", 16], ["2027-01-15", 44], ["2027-02-12", 16]], "done"], ["Medicine & Health Care", "2026-12-01", [["2026-10-16", 46], ["2026-10-23", 62], ["2026-10-30", 20], ["2026-11-06", 22], ["2026-12-04", 34], ["2027-01-15", 88], ["2027-01-22", 34], ["2027-02-05", 69], ["2027-02-12", 98]], "done"], ["Business Innovation", "2026-12-01", [["2026-10-30", 17], ["2026-12-04", 16], ["2027-01-01", 21], ["2027-01-15", 24], ["2027-02-12", 10]], "done"], ["Aviation Academy", "2026-12-01", [["2026-10-23", 4], ["2027-01-01", 12], ["2027-01-15", 11], ["2027-02-12", 6]], "done"]]}, "cases": {}};
+document.querySelectorAll(".slide").forEach((sl, i) => { const pg = sl.querySelector(".pg"); if (pg) pg.textContent = String(i + 1).padStart(2, "0"); });
+const NS = "http://www.w3.org/2000/svg";
+const el = (tag, a, txt) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; return e; };
+const SAGE = "#3D7A6A", MUTE = "#A3ABB5", GRAY = "#6B7280", LINE = "#E5E7EB", NAVY = "#2D3748";
+
+// Bars with 4px rounded tops anchored to the baseline.
+function bar(svg, x, y0, w, h, fill) {
+  if (h <= 0) return;
+  const r = Math.min(4, h, w / 2), y = y0 - h;
+  svg.append(el("path", { fill, d: `M${x},${y0} V${y + r} Q${x},${y} ${x + r},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y0} Z` }));
+}
+
+// 5 · daily hub page views
+(() => {
+  const svg = document.getElementById("traffic"), days = D.hub.daily, W = 1000, H = 470, B = 420, L = 50;
+  const max = 200, step = (W - L) / days.length;
+  for (const t of [0, 50, 100, 150, 200]) {
+    const y = B - (B - 20) * t / max;
+    svg.append(el("line", { x1: L, x2: W, y1: y, y2: y, stroke: LINE, "stroke-width": t ? 1 : 2 }));
+    svg.append(el("text", { x: L - 12, y: y + 7, "text-anchor": "end", "font-size": 19, fill: GRAY }, t));
+  }
+  days.forEach(([d, u, v], i) => {
+    bar(svg, L + i * step + 5, B, step - 10, (B - 20) * v / max, SAGE);
+    if ((days.length - 1 - i) % 3 === 0) svg.append(el("text", { x: L + i * step + step / 2, y: B + 36, "text-anchor": "middle", "font-size": 19, fill: GRAY }, (d.startsWith("11") ? "Nov " : "Oct ") + +d.slice(3)));
+  });
+  // Direct label on the peak only.
+  const pk = days.reduce((a, b, i) => b[2] > days[a][2] ? i : a, 0);
+  svg.append(el("text", { x: L + pk * step + step / 2, y: B - (B - 20) * days[pk][2] / max - 12, "text-anchor": "middle", "font-size": 21, "font-weight": 700, fill: NAVY }, days[pk][2]));
+  document.getElementById("top5").innerHTML = D.hub.top.map(([n, v, u]) => `<li>${n}<span>${v} views · ${u} people</span></li>`).join("");
+})();
+
+// Time savings by marketing activity: hand-hours delivered, leverage per Claude hour.
+(() => {
+  // Before (hand hours) and after (Claude run hours) on one shared hour scale.
+  const A = D.activities, max = Math.max(...A.rows.map(r => r[3]));
+  const fmt = v => v < 10 ? v.toFixed(1).replace(/\.0$/, "") : Math.round(v);
+  const row = (n, sub, h, x, cls = "") => { const a = h / x;
+    return `<div class="r ${cls}"><div class="nm">${n}<small>${sub}</small></div><div class="bars">` +
+      `<div class="b"><i class="bef" style="width:${h / max * 85}%"></i><em>${fmt(h)} h</em></div>` +
+      `<div class="b"><i class="aft" style="width:${Math.max(a / max * 85, .5)}%"></i><em class="g">${fmt(a)} h</em></div></div>` +
+      `<div class="lv">${Math.round(x)}×</div></div>`; };
+  const H = A.rows.reduce((t, r) => t + r[3], 0), C = A.rows.reduce((t, r) => t + r[3] / r[4], 0);
+  document.getElementById("act").innerHTML = A.rows.map(([n, w, k, h, x, ex]) => row(n, ex, h, x)).join("") +
+    `<div class="tot">All seven areas: <b>${Math.round(H)} h</b> by hand → <b class="g">${Math.round(C)} h</b> of Claude time, about <b class="g">${Math.round(H / C)}×</b> faster</div>`;
+})();
+
+// Productivity: hours worked with Claude's hand-equivalent output stacked on top (one axis, hours).
+(() => {
+  const X = D.xfactor, svg = document.getElementById("xf"), wk = X.weeks, W = 1000, B = 350, T = 20, L = 84, max = 350;
+  const y = v => B - (B - T) * v / max;
+  for (const t of [0, 100, 200, 300]) {
+    svg.append(el("line", { x1: L, x2: W, y1: y(t), y2: y(t), stroke: LINE, "stroke-width": t ? 1 : 2 }));
+    svg.append(el("text", { x: L - 12, y: y(t) + 7, "text-anchor": "end", "font-size": 19, fill: GRAY }, t + " h"));
+  }
+  const gw = (W - L) / wk.length, bw = 58;
+  wk.forEach(([lab, worked, out], i) => {
+    const cx = L + gw * i + gw / 2, h = (B - T) * worked / max;
+    bar(svg, cx - bw / 2, B, bw, h, MUTE);
+    // 2px surface gap between the stacked segments
+    if (out) bar(svg, cx - bw / 2, B - h - 2, bw, (B - T) * out / max, SAGE);
+    svg.append(el("text", { x: cx, y: y(worked + out) - 10 - (out ? 2 : 0), "text-anchor": "middle", "font-size": 19, "font-weight": 700, fill: NAVY },
+      out ? (Math.round((worked + out) / worked * 10) / 10) + "×" : Math.round(worked) + " h"));
+    svg.append(el("text", { x: cx, y: B + 34, "text-anchor": "middle", "font-size": 18, fill: GRAY }, lab));
+  });
+  document.getElementById("xf-w").textContent = Math.round(X.worked) + " h";
+  document.getElementById("xf-o").textContent = X.output.toLocaleString() + " h";
+  document.getElementById("xf-x").textContent = X.x + "×";
+  document.getElementById("xf-ai").textContent = X.per_ai_hour + "×";
+})();
+
+// Hub cycle: five nodes on an ellipse, arrows between them, clockwise.
+(() => {
+  const box = document.getElementById("cyc"), svg = box.querySelector("svg"), W = 1700, H = 700;
+  const cx = 850, cy = 372, rx = 620, ry = 250, nodes = box.querySelectorAll(".node");
+  const pt = t => [cx + rx * Math.cos(t), cy + ry * Math.sin(t)];
+  svg.append(el("ellipse", { cx, cy, rx, ry, fill: "none", stroke: SAGE, "stroke-width": 3, "stroke-dasharray": "2 10", "stroke-linecap": "round" }));
+  nodes.forEach((n, i) => {
+    const t = -Math.PI / 2 + i * 2 * Math.PI / 5, [x, y] = pt(t);
+    n.style.left = x / W * 100 + "%"; n.style.top = y / H * 100 + "%";
+    const m = t + Math.PI / 5, [ax, ay] = pt(m), a = Math.atan2(ry * Math.cos(m), -rx * Math.sin(m)) * 180 / Math.PI;
+    svg.append(el("path", { d: "M-16,-14 L14,0 L-16,14 Z", fill: SAGE, transform: `translate(${ax},${ay}) rotate(${a})` }));
+  });
+})();
+
+// A4 · launch board: digital launch (diamond) and mail drops (bubbles, area ~ pieces), Oct 2026 – Feb 2027.
+(() => {
+  const t0 = Date.parse("2026-10-01"), t1 = Date.parse("2027-03-01"), x = d => (Date.parse(d) - t0) / (t1 - t0) * 100;
+  document.getElementById("lb-m").innerHTML = ["Oct", "Nov", "Dec", "Jan", "Feb"].map(m => `<span>${m}</span>`).join("");
+  document.getElementById("lb").innerHTML = D.launcher.rows.map(([n, l, drops, st]) =>
+    `<div class="lbr"><div>${n}</div><div class="lbt">${drops.map(([d, k]) => { const r = 8 + Math.sqrt(k) * 2.6; return `<b style="left:${x(d)}%;width:${r}px;height:${r}px"></b>`; }).join("")}<i style="left:${x(l)}%"></i></div>` +
+    `<div class="st"><span class="${st}">${st === "done" ? "Done" : "In build"}</span></div></div>`).join("");
+})();
+</script>
+</body>
+</html>
